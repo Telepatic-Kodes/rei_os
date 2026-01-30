@@ -1,75 +1,24 @@
 # Roadmap: AIAIAI Consulting
 
-**Created:** 2026-01-30
-**Milestone:** v1.0 — Operational Dashboard
+## Milestones
 
-## Phase Overview
+- ✅ **v1.0 Operational Dashboard** — Phases 1-4 (shipped 2026-01-30)
 
-| Phase | Name | Status | Requirements |
-|-------|------|--------|-------------|
-| 1 | Foundation & Dashboard | ✓ Complete | DASH-01..05, PROJ-01..02, TOKN-01..03, QUAL-01..02, INFR-01..03 |
-| 2 | Kanban Board | ✓ Complete | PROJ-03, PROJ-04 |
-| 3 | Data Persistence & Detail Pages | ✓ Complete | PROJ-05, INFR-04, INFR-05 |
-| 4 | Auto-sync & Integrations | ✓ Complete | TOKN-04, QUAL-03 |
+## Phases
 
-## Phase Details
+<details>
+<summary>✅ v1.0 Operational Dashboard (Phases 1-4) — SHIPPED 2026-01-30</summary>
 
-### Phase 1: Foundation & Dashboard ✓
+- [x] Phase 1: Foundation & Dashboard — 17 requirements delivered
+- [x] Phase 2: Kanban Board — PROJ-03, PROJ-04
+- [x] Phase 3: Data Persistence & Detail Pages — PROJ-05, INFR-04, INFR-05
+- [x] Phase 4: Auto-sync & Integrations — TOKN-04, QUAL-03
 
-**Goal:** Build the core dashboard with all monitoring views and organize the monorepo.
+See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
 
-**Success criteria:**
-- Next.js app runs with home, projects, tokens, quality pages
-- 14 projects organized under projects/
-- JSON data layer serves all views
-- Claude Code fully configured
-
-**Status:** Complete — all 17 requirements delivered.
-
-### Phase 2: Kanban Board ✓
-
-**Goal:** Add interactive kanban view for visual project management.
-
-**Success criteria:**
-- Kanban page with 3 status columns
-- Drag & drop moves projects between columns
-- Sidebar navigation includes kanban link
-
-**Status:** Complete — PROJ-03, PROJ-04 delivered.
-
-### Phase 3: Data Persistence & Detail Pages ✓
-
-**Goal:** Make the dashboard read-write and add per-project deep views.
-
-**Requirements:**
-- [x] **PROJ-05**: Persist kanban drag & drop to projects.json (API route + fs write)
-- [x] **INFR-04**: Auto-sync project metadata from git log, package.json
-- [x] **INFR-05**: Per-project detail page with timeline, commits, metrics history
-
-**Success criteria:**
-- Kanban changes persist across page refresh
-- Project data auto-updates from actual project directories
-- Each project has a /projects/[id] detail page
-
-**Status:** Complete — PROJ-05, INFR-04, INFR-05 delivered.
-
-### Phase 4: Auto-sync & Integrations ✓
-
-**Goal:** Connect to external data sources for real metrics.
-
-**Requirements:**
-- [x] **TOKN-04**: Fetch real token usage from Anthropic API
-- [x] **QUAL-03**: Auto-collect quality metrics (test coverage, lighthouse)
-
-**Success criteria:**
-- Token page shows real Anthropic API usage data
-- Quality metrics auto-populate from project CI/test output
-
-**Status:** Complete — TOKN-04, QUAL-03 delivered.
+</details>
 
 ---
 
-**Progress:** ██████████ 100% (22/22 requirements complete)
-
 *Roadmap created: 2026-01-30*
-*Last updated: 2026-01-30 after Phase 4 planning*
+*Last updated: 2026-01-30 after v1.0 milestone completion*
