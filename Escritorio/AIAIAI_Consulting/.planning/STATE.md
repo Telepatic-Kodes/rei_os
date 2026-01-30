@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-30)
 
 **Core value:** One place to see the status, cost, and health of every project
-**Current focus:** Phase 3 complete — Ready for Phase 4
+**Current focus:** Phase 4 — Auto Sync
 
 ## Current Position
 
 - **Milestone:** v1.0 — Operational Dashboard
-- **Phase:** 3 of 4 (Data Persistence) — COMPLETE
-- **Plan:** 3 of 3 in phase 3
+- **Phase:** 4 of 4 (Auto Sync)
+- **Plan:** 1 of 1 in phase 4
 - **Status:** Phase complete
-- **Last activity:** 2026-01-30 — Completed 03-03-PLAN.md
-- **Progress:** ███████████████████░ 95% (21/22 requirements)
+- **Last activity:** 2026-01-30 — Completed 04-01-PLAN.md
+- **Progress:** ████████████████████ 100% (22/22 requirements)
 
 ## Recent Work
 
@@ -23,6 +23,7 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 - Phase 3 Plan 01: PATCH API for kanban status persistence with optimistic UI
 - Phase 3 Plan 02: Sync script to update projects.json from real git/package.json data
 - Phase 3 Plan 03: Project detail pages with tabs, linked from all project listings
+- Phase 4 Plan 01: Token sync script with Anthropic Admin API + writeTokenData helper
 
 ## Key Decisions
 
@@ -33,18 +34,20 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 - Use __dirname over import.meta.dirname for tsx CJS compatibility (dec-0302-1)
 - Tabs for detail page organization (Resumen/Timeline/Metricas) (D-0303-01)
 - Link on name only for kanban cards to avoid drag conflict (D-0303-02)
+- Graceful exit 0 without credentials for sync scripts (D-0401-01)
+- Session-based merge strategy for token sync (D-0401-02)
 
 ## Open Issues
 
 - ~~Kanban changes don't persist (visual only)~~ RESOLVED in 03-01
 - ~~All data is manually maintained in JSON files~~ PARTIALLY RESOLVED in 03-02 (sync script)
-- No connection to real APIs (Anthropic, GitHub)
+- ~~No connection to real APIs (Anthropic, GitHub)~~ RESOLVED in 04-01 (token sync script ready)
 
 ## Session Continuity
 
-- **Last session:** 2026-01-30T22:56Z
-- **Stopped at:** Completed 03-03-PLAN.md (Phase 3 complete)
+- **Last session:** 2026-01-30T23:04Z
+- **Stopped at:** Completed 04-01-PLAN.md (Phase 4 complete)
 - **Resume file:** None
 
 ---
-*Last updated: 2026-01-30 after 03-03 execution*
+*Last updated: 2026-01-30 after 04-01 execution*
