@@ -68,3 +68,7 @@ export function getTokenData(): TokenData {
 export function getQuality(): QualityEntry[] {
   return readJson<QualityEntry[]>("quality.json");
 }
+
+export function getQualityByProject(project: string): QualityEntry[] {
+  return getQuality().filter((q) => q.project === project);
+}
