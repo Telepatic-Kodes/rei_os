@@ -10,7 +10,7 @@
 | 1 | Foundation & Dashboard | ✓ Complete | DASH-01..05, PROJ-01..02, TOKN-01..03, QUAL-01..02, INFR-01..03 |
 | 2 | Kanban Board | ✓ Complete | PROJ-03, PROJ-04 |
 | 3 | Data Persistence & Detail Pages | ✓ Complete | PROJ-05, INFR-04, INFR-05 |
-| 4 | Auto-sync & Integrations | ○ Planned | TOKN-04, QUAL-03 |
+| 4 | Auto-sync & Integrations | ✓ Complete | TOKN-04, QUAL-03 |
 
 ## Phase Details
 
@@ -53,27 +53,23 @@
 
 **Status:** Complete — PROJ-05, INFR-04, INFR-05 delivered.
 
-### Phase 4: Auto-sync & Integrations
+### Phase 4: Auto-sync & Integrations ✓
 
 **Goal:** Connect to external data sources for real metrics.
 
 **Requirements:**
-- [ ] **TOKN-04**: Fetch real token usage from Anthropic API
-- [ ] **QUAL-03**: Auto-collect quality metrics (test coverage, lighthouse)
-
-**Plans:** 2 plans
-
-Plans:
-- [ ] 04-01-PLAN.md — Token sync script (Anthropic API usage to tokens.json)
-- [ ] 04-02-PLAN.md — Quality metrics sync script (coverage/lighthouse from project dirs)
+- [x] **TOKN-04**: Fetch real token usage from Anthropic API
+- [x] **QUAL-03**: Auto-collect quality metrics (test coverage, lighthouse)
 
 **Success criteria:**
 - Token page shows real Anthropic API usage data
 - Quality metrics auto-populate from project CI/test output
 
+**Status:** Complete — TOKN-04, QUAL-03 delivered.
+
 ---
 
-**Progress:** █████████░ 91% (20/22 requirements complete)
+**Progress:** ██████████ 100% (22/22 requirements complete)
 
 *Roadmap created: 2026-01-30*
 *Last updated: 2026-01-30 after Phase 4 planning*

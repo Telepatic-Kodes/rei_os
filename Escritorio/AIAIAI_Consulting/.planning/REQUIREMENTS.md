@@ -26,13 +26,13 @@
 - [x] **TOKN-01**: Token consumption page with monthly budget display
 - [x] **TOKN-02**: Per-project token breakdown table
 - [x] **TOKN-03**: Budget usage percentage and remaining display
-- [ ] **TOKN-04**: Auto-sync token data from Anthropic API
+- [x] **TOKN-04**: Auto-sync token data from Anthropic API
 
 ### Quality
 
 - [x] **QUAL-01**: Quality metrics page with per-project cards
 - [x] **QUAL-02**: Test coverage, lighthouse score, open issues, tech debt display
-- [ ] **QUAL-03**: Auto-collect quality metrics from project CI/tests
+- [x] **QUAL-03**: Auto-collect quality metrics from project CI/tests
 
 ### Infrastructure
 
@@ -90,10 +90,10 @@
 | TOKN-01 | Phase 1 | Complete |
 | TOKN-02 | Phase 1 | Complete |
 | TOKN-03 | Phase 1 | Complete |
-| TOKN-04 | Phase 4 | Pending |
+| TOKN-04 | Phase 4 | Complete |
 | QUAL-01 | Phase 1 | Complete |
 | QUAL-02 | Phase 1 | Complete |
-| QUAL-03 | Phase 4 | Pending |
+| QUAL-03 | Phase 4 | Complete |
 | INFR-01 | Phase 1 | Complete |
 | INFR-02 | Phase 1 | Complete |
 | INFR-03 | Phase 1 | Complete |
@@ -103,8 +103,8 @@
 **Coverage:**
 - v1 requirements: 22 total
 - Mapped to phases: 22
-- Complete: 20
-- Pending: 2
+- Complete: 22
+- Pending: 0
 - Unmapped: 0 ✓
 
 ---
