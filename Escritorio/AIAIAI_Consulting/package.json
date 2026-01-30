@@ -2,6 +2,7 @@
   "name": "aiaiai-consulting",
   "private": true,
   "scripts": {
-    "sync": "npx tsx scripts/sync-projects.ts"
+    "sync": "npx tsx scripts/sync-projects.ts",
+    "sync:tokens": "npx tsx scripts/sync-tokens.ts"
   }
 }
