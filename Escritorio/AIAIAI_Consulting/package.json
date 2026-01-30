@@ -1,0 +1,7 @@
+{
+  "name": "aiaiai-consulting",
+  "private": true,
+  "scripts": {
+    "sync": "npx tsx scripts/sync-projects.ts"
+  }
+}
