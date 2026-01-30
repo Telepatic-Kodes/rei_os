@@ -65,6 +65,11 @@ export function getTokenData(): TokenData {
   return readJson<TokenData>("tokens.json");
 }
 
+export function writeTokenData(data: TokenData): void {
+  const filePath = path.join(dataDir, "tokens.json");
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + "\n", "utf-8");
+}
+
 export function getQuality(): QualityEntry[] {
   return readJson<QualityEntry[]>("quality.json");
 }
