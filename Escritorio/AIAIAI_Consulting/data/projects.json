@@ -1,0 +1,257 @@
+[
+  {
+    "id": "amd",
+    "name": "AMD - AI Marketing Department",
+    "client": "Interno",
+    "status": "completed",
+    "progress": 100,
+    "startDate": "2025-12-15",
+    "deadline": "2026-01-20",
+    "stack": [
+      "Convex",
+      "TypeScript"
+    ],
+    "lastCommit": "%Y->- (HEAD -> UX/UI2)",
+    "tasksTotal": 40,
+    "tasksDone": 40,
+    "description": "Sistema de 37 Agentes de IA para automatizar un departamento de marketing completo"
+  },
+  {
+    "id": "guitarrap",
+    "name": "Guitarrap",
+    "client": "Interno",
+    "status": "completed",
+    "progress": 100,
+    "startDate": "2025-12-01",
+    "deadline": "2026-01-15",
+    "stack": [
+      "React",
+      "Tone.js",
+      "Zod",
+      "Zustand",
+      "Tailwind"
+    ],
+    "lastCommit": "%Y->- (HEAD -> master)",
+    "tasksTotal": 28,
+    "tasksDone": 28,
+    "description": "Aprende a tocar blues en guitarra - App interactiva con metrónomo, ejercicios guiados y backing tracks"
+  },
+  {
+    "id": "topic-intelligence",
+    "name": "Topic Intelligence Engine",
+    "client": "Interno",
+    "status": "active",
+    "progress": 85,
+    "startDate": "2026-01-05",
+    "deadline": "2026-02-28",
+    "stack": [
+      "SQLite",
+      "Express",
+      "Zod",
+      "TypeScript",
+      "Vite"
+    ],
+    "lastCommit": "%Y->- (HEAD -> master)",
+    "tasksTotal": 20,
+    "tasksDone": 17,
+    "description": "Intelligent content aggregator that monitors YouTube and web, processes with Claude API, and generates daily Markdown summaries"
+  },
+  {
+    "id": "rei-os",
+    "name": "REI_OS - Real Estate AI OS",
+    "client": "Interno",
+    "status": "active",
+    "progress": 60,
+    "startDate": "2026-01-10",
+    "deadline": "2026-03-30",
+    "stack": [
+      "Design",
+      "Documentation"
+    ],
+    "lastCommit": "%Y->- (HEAD -> main)",
+    "tasksTotal": 30,
+    "tasksDone": 18,
+    "description": "Rediseno AI del sistema operativo inmobiliario"
+  },
+  {
+    "id": "remotion-system",
+    "name": "Remotion Animation Studio",
+    "client": "Interno",
+    "status": "completed",
+    "progress": 100,
+    "startDate": "2025-12-10",
+    "deadline": "2026-01-25",
+    "stack": [
+      "React",
+      "Remotion",
+      "Zod",
+      "TypeScript"
+    ],
+    "lastCommit": "%Y->- (HEAD -> master)",
+    "tasksTotal": 15,
+    "tasksDone": 15,
+    "description": "Remotion System - Professional AI-Powered Animation Studio"
+  },
+  {
+    "id": "sueno-andino",
+    "name": "Sueno Andino App",
+    "client": "Sueno Andino",
+    "status": "active",
+    "progress": 75,
+    "startDate": "2025-11-15",
+    "deadline": "2026-02-28",
+    "stack": [
+      "FastAPI",
+      "Next.js 14",
+      "Docker",
+      "SQLAlchemy"
+    ],
+    "lastCommit": "%Y->- (HEAD -> master)",
+    "tasksTotal": 45,
+    "tasksDone": 34,
+    "description": "Sistema de gestion inmobiliaria rural full-stack"
+  },
+  {
+    "id": "inmobiliariapp",
+    "name": "Inmobiliariapp - EI_OS V1",
+    "client": "Interno",
+    "status": "completed",
+    "progress": 100,
+    "startDate": "2025-10-01",
+    "deadline": "2025-12-31",
+    "stack": [
+      "FastAPI",
+      "Next.js 14",
+      "SQLite",
+      "shadcn/ui"
+    ],
+    "lastCommit": "2025-12-30",
+    "tasksTotal": 55,
+    "tasksDone": 55,
+    "description": "Plataforma inmobiliaria con agentes AI autonomos (git corrupted)"
+  },
+  {
+    "id": "dev",
+    "name": "DEV - ClawdBot & Tools",
+    "client": "Interno",
+    "status": "active",
+    "progress": 50,
+    "startDate": "2026-01-10",
+    "deadline": "2026-04-01",
+    "stack": [
+      "Node.js",
+      "TypeScript",
+      "Baileys",
+      "WhatsApp API"
+    ],
+    "lastCommit": "%Y->- (HEAD -> main)",
+    "tasksTotal": 35,
+    "tasksDone": 18,
+    "description": "Bot WhatsApp multi-canal con framework de agentes"
+  },
+  {
+    "id": "money-ads",
+    "name": "Money Ads",
+    "client": "Interno",
+    "status": "active",
+    "progress": 10,
+    "startDate": "2026-01-20",
+    "deadline": "2026-03-15",
+    "stack": [
+      "Python",
+      "Facebook API",
+      "Google Sheets API"
+    ],
+    "lastCommit": "%Y->- (HEAD -> master, origin/master, origin/HEAD)",
+    "tasksTotal": 20,
+    "tasksDone": 2,
+    "description": "Meta Ads Analytics Platform by AIAIAI Consulting"
+  },
+  {
+    "id": "pricing-radar",
+    "name": "Pricing Radar",
+    "client": "Interno",
+    "status": "active",
+    "progress": 15,
+    "startDate": "2026-01-15",
+    "deadline": "2026-03-30",
+    "stack": [
+      "Convex",
+      "Next.js",
+      "React",
+      "Zod",
+      "Tailwind"
+    ],
+    "lastCommit": "%Y->- (HEAD -> main)",
+    "tasksTotal": 25,
+    "tasksDone": 4,
+    "description": "Sistema de inteligencia de precios dinamicos"
+  },
+  {
+    "id": "personal-os",
+    "name": "Personal OS",
+    "client": "Interno",
+    "status": "paused",
+    "progress": 5,
+    "startDate": "2026-01-18",
+    "deadline": "2026-06-01",
+    "stack": [
+      "Framer Motion",
+      "Next.js",
+      "React",
+      "Tailwind",
+      "TypeScript"
+    ],
+    "lastCommit": "%Y->- (HEAD -> main)",
+    "tasksTotal": 30,
+    "tasksDone": 1,
+    "description": "Dashboard personal de productividad"
+  },
+  {
+    "id": "my-remotion-video",
+    "name": "Remotion Video Template",
+    "client": "Interno",
+    "status": "paused",
+    "progress": 0,
+    "startDate": "2026-01-10",
+    "deadline": "2026-12-31",
+    "stack": [
+      "React",
+      "Remotion",
+      "Zod",
+      "TypeScript"
+    ],
+    "lastCommit": "%Y->- (HEAD -> main)",
+    "tasksTotal": 5,
+    "tasksDone": 0,
+    "description": "My Remotion video"
+  },
+  {
+    "id": "claude-workspace",
+    "name": "Claude Workspace",
+    "client": "Interno",
+    "status": "paused",
+    "progress": 0,
+    "startDate": "2026-01-01",
+    "deadline": "2026-12-31",
+    "stack": [],
+    "lastCommit": "%Y->- (HEAD -> main)",
+    "tasksTotal": 0,
+    "tasksDone": 0,
+    "description": "Workspace vacio para experimentacion"
+  },
+  {
+    "id": "my-video",
+    "name": "My Video",
+    "client": "Interno",
+    "status": "paused",
+    "progress": 0,
+    "startDate": "2026-01-01",
+    "deadline": "2026-12-31",
+    "stack": [],
+    "lastCommit": "%Y->- (HEAD -> main)",
+    "tasksTotal": 0,
+    "tasksDone": 0,
+    "description": "Workspace vacio para video"
+  }
+]
