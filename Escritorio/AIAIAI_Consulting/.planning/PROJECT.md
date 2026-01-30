@@ -29,12 +29,17 @@ One place to see the status, cost, and health of every project — so nothing fa
 
 ### Active
 
-- [ ] Alerts/notifications when budget thresholds are crossed
-- [ ] Historical trends for token consumption
+- [ ] Automated data sync via cron + manual refresh button
+- [ ] Per-project token spend trends over time (days/weeks)
 - [ ] Project velocity tracking (tasks completed over time)
+- [ ] Budget alerts with per-project limits and global monthly cap
+- [ ] Desktop notifications for threshold breaches
 - [ ] Cost per project analysis
-- [ ] GitHub integration for commit/PR stats
-- [ ] Webhook/cron to refresh project data periodically
+
+### Deferred (v3.0+)
+
+- GitHub integration for commit/PR stats — focus on core analytics first
+- Cross-project comparison views — per-project trends first
 
 ### Out of Scope
 
@@ -75,5 +80,15 @@ One place to see the status, cost, and health of every project — so nothing fa
 | Session-based merge for token sync | Separates automated from manual entries | ✓ Good |
 | techDebt from coverage+lighthouse thresholds | Simple derivation, no external deps | ✓ Good |
 
+## Current Milestone: v2.0 Analytics, Automation & Alerts
+
+**Goal:** Make the dashboard self-updating with historical analytics and proactive budget alerts so nothing needs manual checking.
+
+**Target features:**
+- Automated data sync (cron background job + manual refresh button)
+- Per-project analytics with historical trends (token spend, velocity, quality over time)
+- Budget alert system with per-project limits and global monthly cap
+- Desktop notifications when thresholds are breached
+
 ---
-*Last updated: 2026-01-30 after v1.0 milestone*
+*Last updated: 2026-01-30 after v2.0 milestone initialization*
