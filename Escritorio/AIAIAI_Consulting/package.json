@@ -3,6 +3,8 @@
   "private": true,
   "scripts": {
     "sync": "npx tsx scripts/sync-projects.ts",
-    "sync:tokens": "npx tsx scripts/sync-tokens.ts"
+    "sync:tokens": "npx tsx scripts/sync-tokens.ts",
+    "sync:quality": "npx tsx scripts/sync-quality.ts",
+    "sync:all": "npx tsx scripts/sync-projects.ts && npx tsx scripts/sync-tokens.ts && npx tsx scripts/sync-quality.ts"
   }
 }
