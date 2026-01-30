@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-30)
 
 **Core value:** One place to see the status, cost, and health of every project
-**Current focus:** Phase 3 — Data Persistence & Detail Pages
+**Current focus:** Phase 3 complete — Ready for Phase 4
 
 ## Current Position
 
 - **Milestone:** v1.0 — Operational Dashboard
-- **Phase:** 3 of 4 (Data Persistence)
-- **Plan:** 2 of 3 in phase 3
-- **Status:** In progress
-- **Last activity:** 2026-01-30 — Completed 03-02-PLAN.md
-- **Progress:** █████████████████░░░ 85% (19/22 requirements)
+- **Phase:** 3 of 4 (Data Persistence) — COMPLETE
+- **Plan:** 3 of 3 in phase 3
+- **Status:** Phase complete
+- **Last activity:** 2026-01-30 — Completed 03-03-PLAN.md
+- **Progress:** ███████████████████░ 95% (21/22 requirements)
 
 ## Recent Work
 
@@ -22,6 +22,7 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 - Phase 2: Added kanban board with HTML5 drag & drop
 - Phase 3 Plan 01: PATCH API for kanban status persistence with optimistic UI
 - Phase 3 Plan 02: Sync script to update projects.json from real git/package.json data
+- Phase 3 Plan 03: Project detail pages with tabs, linked from all project listings
 
 ## Key Decisions
 
@@ -30,6 +31,8 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 - HTML5 drag & drop (no extra deps)
 - Optimistic UI with revert on failure for kanban persistence (D-0301-01)
 - Use __dirname over import.meta.dirname for tsx CJS compatibility (dec-0302-1)
+- Tabs for detail page organization (Resumen/Timeline/Metricas) (D-0303-01)
+- Link on name only for kanban cards to avoid drag conflict (D-0303-02)
 
 ## Open Issues
 
@@ -39,9 +42,9 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 
 ## Session Continuity
 
-- **Last session:** 2026-01-30T22:54Z
-- **Stopped at:** Completed 03-02-PLAN.md
+- **Last session:** 2026-01-30T22:56Z
+- **Stopped at:** Completed 03-03-PLAN.md (Phase 3 complete)
 - **Resume file:** None
 
 ---
-*Last updated: 2026-01-30 after 03-02 execution*
+*Last updated: 2026-01-30 after 03-03 execution*
