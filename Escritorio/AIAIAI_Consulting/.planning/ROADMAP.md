@@ -40,11 +40,11 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
   3. Auto-generated data files are gitignored while seed/config data remains tracked
   4. Running any sync script twice in a row produces identical data files (idempotent)
   5. A simulated concurrent write does not corrupt JSON files (atomic temp-file + rename pattern works)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 05-01: JSONL history infrastructure and atomic write utilities
-- [ ] 05-02: TypeScript interfaces, validation, and gitignore setup
+- [ ] 05-01-PLAN.md — Zod schemas, atomic write utilities, JSONL history infrastructure, budget config extraction
+- [ ] 05-02-PLAN.md — Refactor data.ts with validation, update sync scripts, gitignore setup
 
 ### Phase 6: Automated Sync
 **Goal**: Dashboard data stays current without manual intervention, with visible sync status
@@ -103,11 +103,11 @@ Plans:
 | 2. Kanban Board | v1.0 | 1/1 | Complete | 2026-01-29 |
 | 3. Data Persistence | v1.0 | 3/3 | Complete | 2026-01-30 |
 | 4. Auto-sync | v1.0 | 2/2 | Complete | 2026-01-30 |
-| 5. Data Infrastructure & Safety | v2.0 | 0/2 | Not started | - |
+| 5. Data Infrastructure & Safety | v2.0 | 0/2 | Planned | - |
 | 6. Automated Sync | v2.0 | 0/3 | Not started | - |
 | 7. Analytics & Charts | v2.0 | 0/2 | Not started | - |
 | 8. Budget Alerts & Notifications | v2.0 | 0/2 | Not started | - |
 
 ---
 *Roadmap created: 2026-01-30*
-*Last updated: 2026-01-30 after v2.0 roadmap creation*
+*Last updated: 2026-01-30 after Phase 5 planning*
