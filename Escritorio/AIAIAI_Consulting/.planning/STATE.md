@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-01-30)
 
 **Core value:** One place to see the status, cost, and health of every project
-**Current focus:** v2.0 Phase 8 — Budget Alerts & Notifications
+**Current focus:** v2.0 complete
 
 ## Current Position
 
 - **Milestone:** v2.0 Analytics, Automation & Alerts
 - **Phase:** 8 of 8 (Budget Alerts & Notifications)
-- **Plan:** 1 of 2 in current phase
-- **Status:** In progress
-- **Last activity:** 2026-01-31 — Completed 08-01-PLAN.md
+- **Plan:** 2 of 2 in current phase
+- **Status:** Complete
+- **Last activity:** 2026-01-31 — Completed 08-02-PLAN.md
 
-Progress: [█████████░] 97% (7/7 v1.0 plans done, 8/9 v2.0 plans done)
+Progress: [██████████] 100% (7/7 v1.0 plans done, 9/9 v2.0 plans done)
 
 ## Performance Metrics
 
@@ -31,7 +31,7 @@ Progress: [█████████░] 97% (7/7 v1.0 plans done, 8/9 v2.0 pl
 | 5. Data Infrastructure | 2/2 | Complete |
 | 6. Automated Sync | 3/3 | Complete |
 | 7. Analytics & Charts | 2/2 | Complete |
-| 8. Budget Alerts | 1/2 | In progress |
+| 8. Budget Alerts | 2/2 | Complete |
 
 ## Accumulated Context
 
@@ -63,6 +63,9 @@ Recent decisions affecting current work:
 - 08-01: Two alert modes - evaluateAlerts (fire-once) and getActiveAlerts (stateless for banners)
 - 08-01: Per-session dismiss via localStorage, not server-side
 - 08-01: 30d analytics window used as monthly spend proxy
+- 08-02: node-notifier v10 (v11 not yet published)
+- 08-02: Browser notifications deduplicated by tag + session ref
+- 08-02: 60s polling interval for alert status
 
 ### Open Issues
 
@@ -77,8 +80,8 @@ None.
 ## Session Continuity
 
 - **Last session:** 2026-01-31
-- **Stopped at:** Completed 08-01-PLAN.md
+- **Stopped at:** Completed 08-02-PLAN.md (v2.0 milestone complete)
 - **Resume file:** None
 
 ---
-*Last updated: 2026-01-31 after 08-01 execution complete*
+*Last updated: 2026-01-31 after 08-02 execution complete*
