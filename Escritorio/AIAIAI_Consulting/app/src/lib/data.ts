@@ -1,79 +1,98 @@
 import fs from "fs";
 import path from "path";
+import { z } from "zod";
+import {
+  ProjectSchema,
+  TokenDataSchema,
+  QualityEntrySchema,
+  BudgetConfigSchema,
+} from "./schemas";
+import type {
+  Project,
+  TokenData,
+  TokenEntry,
+  QualityEntry,
+  BudgetConfig,
+} from "./schemas";
+import { atomicWriteJson } from "./atomic-write";
 
-export interface Project {
-  id: string;
-  name: string;
-  client: string;
-  status: "active" | "paused" | "completed";
-  progress: number;
-  startDate: string;
-  deadline: string;
-  stack: string[];
-  lastCommit: string;
-  tasksTotal: number;
-  tasksDone: number;
-  description: string;
-}
-
-export interface TokenEntry {
-  date: string;
-  project: string;
-  session: string;
-  tokensIn: number;
-  tokensOut: number;
-  cost: number;
-  model: string;
-}
-
-export interface TokenData {
-  budget: { monthly: number; currency: string };
-  entries: TokenEntry[];
-}
-
-export interface QualityEntry {
-  project: string;
-  date: string;
-  testCoverage: { frontend: number; backend: number };
-  lighthouseScore: number;
-  openIssues: number;
-  techDebt: "none" | "low" | "medium" | "high";
-}
+// Re-export types for backward compatibility
+export type { Project, TokenData, TokenEntry, QualityEntry, BudgetConfig };
 
 const dataDir = path.join(process.cwd(), "..", "data");
 
-function readJson<T>(filename: string): T {
+/**
+ * Reads and validates JSON data using a Zod schema.
+ * @param filename - The filename relative to the data directory
+ * @param schema - The Zod schema to validate against
+ * @returns The validated and typed data
+ * @throws Error if file doesn't exist or validation fails
+ */
+function readValidatedJson<T>(filename: string, schema: z.ZodType<T>): T {
   const filePath = path.join(dataDir, filename);
   const raw = fs.readFileSync(filePath, "utf-8");
-  return JSON.parse(raw) as T;
+  const parsed = JSON.parse(raw);
+  return schema.parse(parsed);
 }
 
+/**
+ * Gets all projects with runtime validation.
+ */
 export function getProjects(): Project[] {
-  return readJson<Project[]>("projects.json");
+  return readValidatedJson("projects.json", z.array(ProjectSchema));
 }
 
+/**
+ * Gets a single project by ID.
+ */
 export function getProjectById(id: string): Project | undefined {
   return getProjects().find((p) => p.id === id);
 }
 
+/**
+ * Writes projects to disk using atomic write pattern.
+ * Validates data before writing.
+ */
 export function writeProjects(projects: Project[]): void {
+  const validated = z.array(ProjectSchema).parse(projects);
   const filePath = path.join(dataDir, "projects.json");
-  fs.writeFileSync(filePath, JSON.stringify(projects, null, 2) + "\n", "utf-8");
+  atomicWriteJson(filePath, validated);
 }
 
+/**
+ * Gets token data with runtime validation.
+ */
 export function getTokenData(): TokenData {
-  return readJson<TokenData>("tokens.json");
+  return readValidatedJson("tokens.json", TokenDataSchema);
 }
 
+/**
+ * Writes token data to disk using atomic write pattern.
+ * Validates data before writing.
+ */
 export function writeTokenData(data: TokenData): void {
+  const validated = TokenDataSchema.parse(data);
   const filePath = path.join(dataDir, "tokens.json");
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + "\n", "utf-8");
+  atomicWriteJson(filePath, validated);
 }
 
+/**
+ * Gets quality metrics with runtime validation.
+ */
 export function getQuality(): QualityEntry[] {
-  return readJson<QualityEntry[]>("quality.json");
+  return readValidatedJson("quality.json", z.array(QualityEntrySchema));
 }
 
+/**
+ * Gets quality metrics for a specific project.
+ */
 export function getQualityByProject(project: string): QualityEntry[] {
   return getQuality().filter((q) => q.project === project);
+}
+
+/**
+ * Gets budget configuration with runtime validation.
+ */
+export function getBudgetConfig(): BudgetConfig {
+  return readValidatedJson("config/budget.json", BudgetConfigSchema);
 }
