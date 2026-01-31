@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 
 - **Milestone:** v2.0 Analytics, Automation & Alerts
 - **Phase:** 5 of 8 (Data Infrastructure & Safety)
-- **Plan:** 0 of 2 in current phase
-- **Status:** Ready to plan
-- **Last activity:** 2026-01-30 — v2.0 roadmap created (4 phases, 18 requirements)
+- **Plan:** 1 of 2 in current phase
+- **Status:** In progress
+- **Last activity:** 2026-01-31 — Completed 05-01-PLAN.md (Data Infrastructure foundations)
 
-Progress: [███████░░░] 70% (7/7 v1.0 plans done, 0/9 v2.0 plans done)
+Progress: [████████░░] 75% (7/7 v1.0 plans done, 1/9 v2.0 plans done)
 
 ## Performance Metrics
 
@@ -28,7 +28,7 @@ Progress: [███████░░░] 70% (7/7 v1.0 plans done, 0/9 v2.0 pl
 | Phase | Plans | Status |
 |-------|-------|--------|
 | 1-4 (v1.0) | 7/7 | Complete |
-| 5. Data Infrastructure | 0/2 | Not started |
+| 5. Data Infrastructure | 1/2 | In progress |
 | 6. Automated Sync | 0/3 | Not started |
 | 7. Analytics & Charts | 0/2 | Not started |
 | 8. Budget Alerts | 0/2 | Not started |
@@ -43,6 +43,9 @@ Recent decisions affecting current work:
 - v1.0: JSON files over database (continuing into v2.0 with JSONL for history)
 - v1.0: Session-based merge for token sync (Phase 6 builds on this)
 - v2.0: Cron runs as separate Node process, NOT inside Next.js (research finding)
+- 05-01: Zod for runtime validation instead of TypeScript-only types
+- 05-01: Tmp+rename pattern for atomic JSON writes, direct append for JSONL
+- 05-01: Monthly JSONL rotation (YYYY-MM naming) with 6-month retention
 
 ### Open Issues
 
@@ -56,9 +59,9 @@ None.
 
 ## Session Continuity
 
-- **Last session:** 2026-01-30
-- **Stopped at:** v2.0 roadmap created, ready to plan Phase 5
+- **Last session:** 2026-01-31
+- **Stopped at:** Completed 05-01-PLAN.md
 - **Resume file:** None
 
 ---
-*Last updated: 2026-01-30 after v2.0 roadmap creation*
+*Last updated: 2026-01-31 after completing Phase 5 Plan 1*
