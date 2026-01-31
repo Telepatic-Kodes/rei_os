@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 
 - **Milestone:** v2.0 Analytics, Automation & Alerts
 - **Phase:** 5 of 8 (Data Infrastructure & Safety)
-- **Plan:** 1 of 2 in current phase
-- **Status:** In progress
-- **Last activity:** 2026-01-31 — Completed 05-01-PLAN.md (Data Infrastructure foundations)
+- **Plan:** 2 of 2 in current phase
+- **Status:** Phase complete
+- **Last activity:** 2026-01-31 — Completed 05-02-PLAN.md (Data Safety Layer)
 
-Progress: [████████░░] 75% (7/7 v1.0 plans done, 1/9 v2.0 plans done)
+Progress: [████████░░] 80% (7/7 v1.0 plans done, 2/9 v2.0 plans done)
 
 ## Performance Metrics
 
@@ -28,7 +28,7 @@ Progress: [████████░░] 75% (7/7 v1.0 plans done, 1/9 v2.0 pl
 | Phase | Plans | Status |
 |-------|-------|--------|
 | 1-4 (v1.0) | 7/7 | Complete |
-| 5. Data Infrastructure | 1/2 | In progress |
+| 5. Data Infrastructure | 2/2 | Complete |
 | 6. Automated Sync | 0/3 | Not started |
 | 7. Analytics & Charts | 0/2 | Not started |
 | 8. Budget Alerts | 0/2 | Not started |
@@ -46,6 +46,9 @@ Recent decisions affecting current work:
 - 05-01: Zod for runtime validation instead of TypeScript-only types
 - 05-01: Tmp+rename pattern for atomic JSON writes, direct append for JSONL
 - 05-01: Monthly JSONL rotation (YYYY-MM naming) with 6-month retention
+- 05-02: Eliminate all 'as T' type casts in favor of Zod runtime validation
+- 05-02: Re-export types from data.ts for backward compatibility
+- 05-02: Deduplicate projects by name (not id) for idempotency
 
 ### Open Issues
 
@@ -60,8 +63,8 @@ None.
 ## Session Continuity
 
 - **Last session:** 2026-01-31
-- **Stopped at:** Completed 05-01-PLAN.md
+- **Stopped at:** Completed 05-02-PLAN.md (Phase 5 complete)
 - **Resume file:** None
 
 ---
-*Last updated: 2026-01-31 after completing Phase 5 Plan 1*
+*Last updated: 2026-01-31 after completing Phase 5 Plan 2*
