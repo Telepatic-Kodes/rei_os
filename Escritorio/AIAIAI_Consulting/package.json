@@ -8,6 +8,10 @@
     "sync:all": "npx tsx scripts/sync-projects.ts && npx tsx scripts/sync-tokens.ts && npx tsx scripts/sync-quality.ts"
   },
   "dependencies": {
-    "croner": "^9.1.0"
+    "croner": "^9.1.0",
+    "node-notifier": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/node-notifier": "^8.0.5"
   }
 }
