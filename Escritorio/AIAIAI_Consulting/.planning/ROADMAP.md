@@ -25,7 +25,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
 
 - [x] **Phase 5: Data Infrastructure & Safety** — Safe, typed data foundation for automated writes
 - [x] **Phase 6: Automated Sync** — Eliminate manual script execution with scheduled and on-demand sync
-- [ ] **Phase 7: Analytics & Charts** — Visual token spend trends and budget projections
+- [x] **Phase 7: Analytics & Charts** — Visual token spend trends and budget projections
 - [ ] **Phase 8: Budget Alerts & Notifications** — Proactive warnings before budget overruns
 
 ## Phase Details
@@ -74,8 +74,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 07-01-PLAN.md — Recharts integration, data helpers, spend trend chart, analytics page
-- [ ] 07-02-PLAN.md — Cost-per-model breakdown chart and burn rate projection card
+- [x] 07-01-PLAN.md — Recharts integration, data helpers, spend trend chart, analytics page
+- [x] 07-02-PLAN.md — Cost-per-model breakdown chart and burn rate projection card
 
 ### Phase 8: Budget Alerts & Notifications
 **Goal**: Users are proactively warned before budget overruns through multiple notification channels
@@ -105,9 +105,9 @@ Plans:
 | 4. Auto-sync | v1.0 | 2/2 | Complete | 2026-01-30 |
 | 5. Data Infrastructure & Safety | v2.0 | 2/2 | Complete | 2026-01-31 |
 | 6. Automated Sync | v2.0 | 3/3 | Complete | 2026-01-31 |
-| 7. Analytics & Charts | v2.0 | 0/2 | Not started | - |
+| 7. Analytics & Charts | v2.0 | 2/2 | Complete | 2026-01-31 |
 | 8. Budget Alerts & Notifications | v2.0 | 0/2 | Not started | - |
 
 ---
 *Roadmap created: 2026-01-30*
-*Last updated: 2026-01-31 after Phase 6 execution*
+*Last updated: 2026-01-31 after Phase 7 execution*

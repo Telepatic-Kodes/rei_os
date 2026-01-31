@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-01-30)
 
 **Core value:** One place to see the status, cost, and health of every project
-**Current focus:** v2.0 Phase 7 — Analytics & Charts
+**Current focus:** v2.0 Phase 8 — Budget Alerts & Notifications
 
 ## Current Position
 
 - **Milestone:** v2.0 Analytics, Automation & Alerts
-- **Phase:** 7 of 8 (Analytics & Charts)
-- **Plan:** 2 of 2 in current phase
-- **Status:** Phase complete
-- **Last activity:** 2026-01-31 — Completed 07-02-PLAN.md
+- **Phase:** 8 of 8 (Budget Alerts & Notifications)
+- **Plan:** 0 of 2 in current phase
+- **Status:** Ready to plan
+- **Last activity:** 2026-01-31 — Phase 7 verified and complete
 
-Progress: [█████████░] 100% (7/7 v1.0 plans done, 7/9 v2.0 plans done)
+Progress: [█████████░] 95% (7/7 v1.0 plans done, 7/9 v2.0 plans done)
 
 ## Performance Metrics
 

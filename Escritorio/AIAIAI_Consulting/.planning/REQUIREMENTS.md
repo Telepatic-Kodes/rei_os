@@ -18,9 +18,9 @@ Requirements for milestone v2.0: Analytics, Automation & Alerts.
 ### Analytics
 
 - [x] **ANLT-01**: Historical data stored as JSONL append-only logs with daily snapshots
-- [ ] **ANLT-02**: Per-project token spend line chart showing trends over days/weeks
-- [ ] **ANLT-03**: Cost-per-model breakdown (opus vs sonnet spending)
-- [ ] **ANLT-04**: Burn rate projection showing predicted budget exhaustion date
+- [x] **ANLT-02**: Per-project token spend line chart showing trends over days/weeks
+- [x] **ANLT-03**: Cost-per-model breakdown (opus vs sonnet spending)
+- [x] **ANLT-04**: Burn rate projection showing predicted budget exhaustion date
 - [x] **ANLT-05**: Analytics pre-computed in sync scripts, not calculated client-side
 
 ### Alerts
@@ -72,9 +72,9 @@ Deferred to v3.0+.
 | AUTO-03 | Phase 6 | Complete |
 | ANLT-01 | Phase 6 | Complete |
 | ANLT-05 | Phase 6 | Complete |
-| ANLT-02 | Phase 7 | Pending |
-| ANLT-03 | Phase 7 | Pending |
-| ANLT-04 | Phase 7 | Pending |
+| ANLT-02 | Phase 7 | Complete |
+| ANLT-03 | Phase 7 | Complete |
+| ANLT-04 | Phase 7 | Complete |
 | ALRT-01 | Phase 8 | Pending |
 | ALRT-02 | Phase 8 | Pending |
 | ALRT-03 | Phase 8 | Pending |
