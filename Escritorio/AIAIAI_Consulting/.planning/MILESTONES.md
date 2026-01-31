@@ -1,5 +1,32 @@
 # Project Milestones: AIAIAI Consulting
 
+## v2.0 Analytics, Automation & Alerts (Shipped: 2026-01-31)
+
+**Delivered:** Self-updating dashboard with automated sync, historical analytics, visual spend trends, and proactive budget alerts across desktop and browser notification channels.
+
+**Phases completed:** 5-8 (9 plans total)
+
+**Key accomplishments:**
+
+- Zod-validated data layer with atomic writes and JSONL history rotation (6-month retention)
+- Automated cron sync with lock-file coordination and configurable intervals
+- Pre-computed analytics with 7d/30d/90d time windows and burn rate projections
+- Recharts visualizations — spend trends, cost-per-model breakdown, budget exhaustion date
+- Budget alert system with configurable thresholds, dismissible dashboard banners, and settings UI
+- Desktop notifications (node-notifier) from cron + browser Notification API with 60s polling
+
+**Stats:**
+
+- 3,972 lines of TypeScript (cumulative)
+- 4 phases, 9 plans, 41 commits
+- 2 days (2026-01-30 → 2026-01-31), same sprint as v1.0
+
+**Git range:** `feat(05-01)` → `docs(08)`
+
+**What's next:** Project complete for current scope. v3.0+ deferred: GitHub integration, cross-project comparisons, velocity tracking.
+
+---
+
 ## v1.0.0 Operational Dashboard (Shipped: 2026-01-30)
 
 **Delivered:** Complete operational dashboard for monitoring development progress, token consumption, and code quality across 14 consulting projects.

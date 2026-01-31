@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Monorepo hub for an AI consulting practice that centralizes 14+ client and internal projects, with a Next.js dashboard for monitoring development progress, token consumption, and code quality. Includes interactive kanban board, per-project detail pages, and automated sync scripts for real-time data from git, Anthropic API, and CI pipelines.
+Monorepo hub for an AI consulting practice that centralizes 14+ client and internal projects, with a self-updating Next.js dashboard for monitoring development progress, token consumption, code quality, and budget health. Includes interactive kanban board, per-project detail pages, automated cron sync, historical analytics with Recharts visualizations, and proactive budget alerts via dashboard banners, desktop notifications, and browser Notification API.
 
 ## Core Value
 
@@ -27,19 +27,22 @@ One place to see the status, cost, and health of every project — so nothing fa
 - ✓ Per-project detail pages with timeline and metrics history — v1.0
 - ✓ Quality metrics auto-collection (coverage, lighthouse, TODO/FIXME) — v1.0
 
+- ✓ Automated data sync via cron + manual refresh button — v2.0
+- ✓ Per-project token spend trends over time (days/weeks) — v2.0
+- ✓ Budget alerts with per-project limits and global monthly cap — v2.0
+- ✓ Desktop notifications for threshold breaches — v2.0
+- ✓ Cost per project analysis — v2.0
+
 ### Active
 
-- [ ] Automated data sync via cron + manual refresh button
-- [ ] Per-project token spend trends over time (days/weeks)
 - [ ] Project velocity tracking (tasks completed over time)
-- [ ] Budget alerts with per-project limits and global monthly cap
-- [ ] Desktop notifications for threshold breaches
-- [ ] Cost per project analysis
 
 ### Deferred (v3.0+)
 
-- GitHub integration for commit/PR stats — focus on core analytics first
-- Cross-project comparison views — per-project trends first
+- GitHub integration for commit/PR stats
+- Cross-project comparison views and rankings
+- Quality score trends over time (coverage, lighthouse)
+- Weekly summary digest auto-generated as markdown
 
 ### Out of Scope
 
@@ -57,6 +60,8 @@ One place to see the status, cost, and health of every project — so nothing fa
 - Token budget: $200/month across all projects
 - Stack: Next.js 16, React 19, TypeScript, Tailwind v4, shadcn/ui
 - v1.0 shipped: 1,792 LOC TypeScript, 26 commits, 4 phases
+- v2.0 shipped: 3,972 LOC TypeScript (cumulative), 41 commits, 4 phases (5-8)
+- Additional stack: Zod, croner, Recharts 3.7.0, node-notifier, sonner
 
 ## Constraints
 
@@ -79,16 +84,20 @@ One place to see the status, cost, and health of every project — so nothing fa
 | Graceful exit 0 without credentials | No CI failures in environments without API keys | ✓ Good |
 | Session-based merge for token sync | Separates automated from manual entries | ✓ Good |
 | techDebt from coverage+lighthouse thresholds | Simple derivation, no external deps | ✓ Good |
+| Zod for runtime validation | Catch data corruption at load time, not runtime | ✓ Good |
+| Atomic writes (tmp+rename) | Prevent JSON corruption on concurrent access | ✓ Good |
+| Cron as separate Node process | Avoid Next.js lifecycle issues, clean separation | ✓ Good |
+| croner for scheduling | Lightweight, ESM-native, no heavy dependencies | ✓ Good |
+| Recharts 3.7.0 | React 19 compatible, maintained, good TypeScript support | ✓ Good |
+| Fire-once alert pattern | Prevents notification spam, tracks per month | ✓ Good |
+| Two alert functions (evaluate vs getActive) | Separate state mutation from read-only queries | ✓ Good |
 
-## Current Milestone: v2.0 Analytics, Automation & Alerts
+## Milestones Shipped
 
-**Goal:** Make the dashboard self-updating with historical analytics and proactive budget alerts so nothing needs manual checking.
+- **v1.0 Operational Dashboard** — shipped 2026-01-30 (4 phases, 5 plans)
+- **v2.0 Analytics, Automation & Alerts** — shipped 2026-01-31 (4 phases, 9 plans)
 
-**Target features:**
-- Automated data sync (cron background job + manual refresh button)
-- Per-project analytics with historical trends (token spend, velocity, quality over time)
-- Budget alert system with per-project limits and global monthly cap
-- Desktop notifications when thresholds are breached
+See `.planning/MILESTONES.md` for full details.
 
 ---
-*Last updated: 2026-01-30 after v2.0 milestone initialization*
+*Last updated: 2026-01-31 after v2.0 milestone completion*
