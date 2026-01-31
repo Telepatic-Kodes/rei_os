@@ -56,12 +56,12 @@ Plans:
   3. The dashboard displays when the last sync occurred and whether it succeeded or failed
   4. Each sync run appends a daily snapshot to JSONL history files (append-only log)
   5. Analytics values (totals, trends, averages) are pre-computed during sync and served as static JSON to the frontend
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: SyncManager process with croner scheduler
-- [ ] 06-02: Manual sync API route, UI button, and status indicator
-- [ ] 06-03: History recording and pre-computed analytics
+- [ ] 06-01-PLAN.md — SyncManager orchestrator + croner cron process + sync config
+- [ ] 06-02-PLAN.md — Manual sync API route, refresh button, sync status indicator in dashboard header
+- [ ] 06-03-PLAN.md — Pre-computed analytics generator and JSONL history integration
 
 ### Phase 7: Analytics & Charts
 **Goal**: Users can see token spend trends, cost breakdowns, and budget projections at a glance
@@ -95,7 +95,7 @@ Plans:
 
 ## Progress
 
-**Execution Order:** 5 → 6 → 7 → 8
+**Execution Order:** 5 -> 6 -> 7 -> 8
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -110,4 +110,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-01-30*
-*Last updated: 2026-01-31 after Phase 5 execution*
+*Last updated: 2026-01-31 after Phase 6 planning*
