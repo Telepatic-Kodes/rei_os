@@ -4,6 +4,7 @@ import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { DashboardHeader } from "@/components/dashboard-header";
+import { AlertBanner } from "@/components/alert-banner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
         <div className="flex h-screen">
           <Sidebar />
           <main className="flex-1 overflow-y-auto p-8">
+            <AlertBanner />
             <DashboardHeader />
             {children}
           </main>
