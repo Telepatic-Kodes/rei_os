@@ -64,6 +64,19 @@ export const HistoryEntrySchema = z.object({
   data: z.unknown(),
 });
 
+// Sync config schema
+export const SyncConfigSchema = z.object({
+  intervalMinutes: z.number().min(1).max(1440),
+});
+
+// Sync status schema
+export const SyncStatusSchema = z.object({
+  lastSync: z.string(),
+  status: z.enum(["success", "error"]),
+  durationMs: z.number().optional(),
+  error: z.string().optional(),
+});
+
 // Export inferred TypeScript types
 export type Project = z.infer<typeof ProjectSchema>;
 export type TokenEntry = z.infer<typeof TokenEntrySchema>;
@@ -71,6 +84,8 @@ export type BudgetConfig = z.infer<typeof BudgetConfigSchema>;
 export type TokenData = z.infer<typeof TokenDataSchema>;
 export type QualityEntry = z.infer<typeof QualityEntrySchema>;
 export type HistoryEntry = z.infer<typeof HistoryEntrySchema>;
+export type SyncConfig = z.infer<typeof SyncConfigSchema>;
+export type SyncStatus = z.infer<typeof SyncStatusSchema>;
 
 /**
  * Validates data against a Zod schema.

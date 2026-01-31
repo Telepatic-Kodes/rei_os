@@ -1,5 +1,7 @@
 # Auto-generated data (recreated by sync scripts)
 data/history/
+data/sync-status.json
+data/.sync-lock
 
 # Keep tracked
 !data/config/
