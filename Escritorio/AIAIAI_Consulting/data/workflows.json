@@ -1,0 +1,209 @@
+{
+  "workflows": [
+    {
+      "id": "workflow-content",
+      "name": "Content Production Flow",
+      "description": "SEO keyword research → Blog article → LinkedIn post → Twitter thread",
+      "estimatedDuration": 180,
+      "steps": [
+        {
+          "agentId": "seo-001",
+          "taskType": "keyword_research"
+        },
+        {
+          "agentId": "content-001",
+          "taskType": "write_blog",
+          "dependsOn": ["seo-001"]
+        },
+        {
+          "agentId": "social-001",
+          "taskType": "create_linkedin_post",
+          "dependsOn": ["content-001"]
+        },
+        {
+          "agentId": "social-002",
+          "taskType": "create_twitter_thread",
+          "dependsOn": ["content-001"]
+        }
+      ]
+    },
+    {
+      "id": "workflow-social",
+      "name": "Social Media Blitz",
+      "description": "Coordinated social campaign across all platforms",
+      "estimatedDuration": 120,
+      "steps": [
+        {
+          "agentId": "social-001",
+          "taskType": "create_linkedin_post"
+        },
+        {
+          "agentId": "social-002",
+          "taskType": "create_twitter_thread"
+        },
+        {
+          "agentId": "social-003",
+          "taskType": "create_linkedin_post"
+        },
+        {
+          "agentId": "social-004",
+          "taskType": "create_twitter_thread"
+        }
+      ]
+    },
+    {
+      "id": "workflow-seo",
+      "name": "SEO Optimization Campaign",
+      "description": "Keyword research → Content optimization → Link building outreach",
+      "estimatedDuration": 240,
+      "steps": [
+        {
+          "agentId": "seo-001",
+          "taskType": "keyword_research"
+        },
+        {
+          "agentId": "seo-002",
+          "taskType": "content_optimization",
+          "dependsOn": ["seo-001"]
+        },
+        {
+          "agentId": "seo-003",
+          "taskType": "analyze_performance",
+          "dependsOn": ["seo-002"]
+        },
+        {
+          "agentId": "seo-004",
+          "taskType": "email_campaign",
+          "dependsOn": ["seo-003"]
+        }
+      ]
+    },
+    {
+      "id": "workflow-email",
+      "name": "Email Campaign Launch",
+      "description": "Strategy → Copy → Automation setup → Deliverability check",
+      "estimatedDuration": 150,
+      "steps": [
+        {
+          "agentId": "email-001",
+          "taskType": "email_campaign"
+        },
+        {
+          "agentId": "email-002",
+          "taskType": "email_campaign",
+          "dependsOn": ["email-001"]
+        },
+        {
+          "agentId": "email-003",
+          "taskType": "email_campaign",
+          "dependsOn": ["email-002"]
+        },
+        {
+          "agentId": "email-004",
+          "taskType": "analyze_performance",
+          "dependsOn": ["email-003"]
+        }
+      ]
+    },
+    {
+      "id": "workflow-ads",
+      "name": "Paid Ads Campaign",
+      "description": "Ad copy creation → Landing page optimization → Performance tracking",
+      "estimatedDuration": 200,
+      "steps": [
+        {
+          "agentId": "ads-001",
+          "taskType": "ad_copy"
+        },
+        {
+          "agentId": "ads-002",
+          "taskType": "ad_copy"
+        },
+        {
+          "agentId": "ads-005",
+          "taskType": "content_optimization",
+          "dependsOn": ["ads-001", "ads-002"]
+        },
+        {
+          "agentId": "analytics-001",
+          "taskType": "analyze_performance",
+          "dependsOn": ["ads-005"]
+        }
+      ]
+    },
+    {
+      "id": "workflow-brand",
+      "name": "Brand Consistency Check",
+      "description": "Brand guidelines → Voice audit → Visual review → Crisis prep",
+      "estimatedDuration": 180,
+      "steps": [
+        {
+          "agentId": "brand-001",
+          "taskType": "brand_guidelines"
+        },
+        {
+          "agentId": "brand-002",
+          "taskType": "brand_guidelines",
+          "dependsOn": ["brand-001"]
+        },
+        {
+          "agentId": "brand-003",
+          "taskType": "brand_guidelines",
+          "dependsOn": ["brand-002"]
+        },
+        {
+          "agentId": "brand-004",
+          "taskType": "email_campaign",
+          "dependsOn": ["brand-003"]
+        }
+      ]
+    },
+    {
+      "id": "workflow-full",
+      "name": "Full Marketing Cycle",
+      "description": "Complete end-to-end: Research → Content → Social → Ads → Analytics",
+      "estimatedDuration": 420,
+      "steps": [
+        {
+          "agentId": "seo-001",
+          "taskType": "keyword_research"
+        },
+        {
+          "agentId": "content-001",
+          "taskType": "write_blog",
+          "dependsOn": ["seo-001"]
+        },
+        {
+          "agentId": "seo-002",
+          "taskType": "content_optimization",
+          "dependsOn": ["content-001"]
+        },
+        {
+          "agentId": "social-001",
+          "taskType": "create_linkedin_post",
+          "dependsOn": ["content-001"]
+        },
+        {
+          "agentId": "social-002",
+          "taskType": "create_twitter_thread",
+          "dependsOn": ["content-001"]
+        },
+        {
+          "agentId": "email-002",
+          "taskType": "email_campaign",
+          "dependsOn": ["content-001"]
+        },
+        {
+          "agentId": "ads-001",
+          "taskType": "ad_copy",
+          "dependsOn": ["seo-001"]
+        },
+        {
+          "agentId": "analytics-001",
+          "taskType": "analyze_performance",
+          "dependsOn": ["social-001", "email-002", "ads-001"]
+        }
+      ]
+    }
+  ]
+}

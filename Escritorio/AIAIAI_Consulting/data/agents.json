@@ -1,0 +1,364 @@
+{
+  "agents": [
+    {
+      "id": "content-001",
+      "name": "Blog Writer",
+      "department": "content",
+      "role": "Long-form content creation",
+      "status": "online",
+      "capabilities": ["SEO-optimized articles", "Thought leadership", "Technical writing"],
+      "tools": ["Claude API", "Grammar check", "Plagiarism detector"],
+      "supportedTaskTypes": ["write_blog"]
+    },
+    {
+      "id": "content-002",
+      "name": "Whitepaper Specialist",
+      "department": "content",
+      "role": "Technical documentation",
+      "status": "online",
+      "capabilities": ["Research synthesis", "Data visualization", "Industry reports"],
+      "tools": ["Claude API", "Research databases"],
+      "supportedTaskTypes": ["write_blog"]
+    },
+    {
+      "id": "content-003",
+      "name": "Case Study Writer",
+      "department": "content",
+      "role": "Customer success stories",
+      "status": "online",
+      "capabilities": ["Interview processing", "ROI calculation", "Storytelling"],
+      "tools": ["Claude API", "Template engine"],
+      "supportedTaskTypes": ["write_blog"]
+    },
+    {
+      "id": "content-004",
+      "name": "Newsletter Curator",
+      "department": "content",
+      "role": "Email content",
+      "status": "online",
+      "capabilities": ["Content aggregation", "Trend analysis", "Copywriting"],
+      "tools": ["Claude API", "RSS feeds"],
+      "supportedTaskTypes": ["email_campaign"]
+    },
+    {
+      "id": "content-005",
+      "name": "Video Script Writer",
+      "department": "content",
+      "role": "Video content",
+      "status": "online",
+      "capabilities": ["Script structure", "Hook creation", "CTA optimization"],
+      "tools": ["Claude API", "Video analytics"],
+      "supportedTaskTypes": ["write_blog"]
+    },
+    {
+      "id": "social-001",
+      "name": "LinkedIn Strategist",
+      "department": "social",
+      "role": "B2B social content",
+      "status": "online",
+      "capabilities": ["Thought leadership posts", "Engagement hooks", "Industry insights"],
+      "tools": ["Claude API", "LinkedIn API", "Hashtag research"],
+      "supportedTaskTypes": ["create_linkedin_post"]
+    },
+    {
+      "id": "social-002",
+      "name": "Twitter Specialist",
+      "department": "social",
+      "role": "Real-time engagement",
+      "status": "online",
+      "capabilities": ["Thread creation", "Trending topics", "Viral mechanics"],
+      "tools": ["Claude API", "Twitter API", "Trend monitoring"],
+      "supportedTaskTypes": ["create_twitter_thread"]
+    },
+    {
+      "id": "social-003",
+      "name": "Instagram Content Creator",
+      "department": "social",
+      "role": "Visual storytelling",
+      "status": "online",
+      "capabilities": ["Caption writing", "Hashtag strategy", "Story scripts"],
+      "tools": ["Claude API", "Image analyzer"],
+      "supportedTaskTypes": ["create_linkedin_post"]
+    },
+    {
+      "id": "social-004",
+      "name": "TikTok Specialist",
+      "department": "social",
+      "role": "Short-form video",
+      "status": "online",
+      "capabilities": ["Viral hooks", "Trend adaptation", "Sound selection"],
+      "tools": ["Claude API", "TikTok trends"],
+      "supportedTaskTypes": ["create_twitter_thread"]
+    },
+    {
+      "id": "social-005",
+      "name": "Community Manager",
+      "department": "social",
+      "role": "Engagement & responses",
+      "status": "online",
+      "capabilities": ["Reply generation", "Crisis management", "Sentiment analysis"],
+      "tools": ["Claude API", "Sentiment analyzer"],
+      "supportedTaskTypes": ["create_linkedin_post"]
+    },
+    {
+      "id": "social-006",
+      "name": "Social Listening Agent",
+      "department": "social",
+      "role": "Brand monitoring",
+      "status": "online",
+      "capabilities": ["Mention tracking", "Competitor analysis", "Trend identification"],
+      "tools": ["Social listening API", "Claude API"],
+      "supportedTaskTypes": ["analyze_performance"]
+    },
+    {
+      "id": "seo-001",
+      "name": "Keyword Researcher",
+      "department": "seo",
+      "role": "Search strategy",
+      "status": "online",
+      "capabilities": ["Keyword discovery", "Competition analysis", "Intent mapping"],
+      "tools": ["SEMrush API", "Ahrefs API", "Claude API"],
+      "supportedTaskTypes": ["keyword_research"]
+    },
+    {
+      "id": "seo-002",
+      "name": "Content Optimizer",
+      "department": "seo",
+      "role": "On-page SEO",
+      "status": "online",
+      "capabilities": ["Meta optimization", "Header structure", "Internal linking"],
+      "tools": ["Claude API", "SEO analyzer"],
+      "supportedTaskTypes": ["content_optimization"]
+    },
+    {
+      "id": "seo-003",
+      "name": "Technical SEO Auditor",
+      "department": "seo",
+      "role": "Site optimization",
+      "status": "online",
+      "capabilities": ["Crawl analysis", "Speed optimization", "Schema markup"],
+      "tools": ["Screaming Frog API", "Claude API"],
+      "supportedTaskTypes": ["analyze_performance"]
+    },
+    {
+      "id": "seo-004",
+      "name": "Link Building Strategist",
+      "department": "seo",
+      "role": "Authority building",
+      "status": "online",
+      "capabilities": ["Outreach templates", "Link prospecting", "Partnership pitches"],
+      "tools": ["Claude API", "Backlink tools"],
+      "supportedTaskTypes": ["email_campaign"]
+    },
+    {
+      "id": "seo-005",
+      "name": "Local SEO Specialist",
+      "department": "seo",
+      "role": "Local search",
+      "status": "online",
+      "capabilities": ["GMB optimization", "Local citations", "Review management"],
+      "tools": ["Google My Business API", "Claude API"],
+      "supportedTaskTypes": ["content_optimization"]
+    },
+    {
+      "id": "email-001",
+      "name": "Campaign Strategist",
+      "department": "email",
+      "role": "Email campaigns",
+      "status": "online",
+      "capabilities": ["Sequence planning", "A/B testing", "Segmentation"],
+      "tools": ["Claude API", "Email platform API"],
+      "supportedTaskTypes": ["email_campaign"]
+    },
+    {
+      "id": "email-002",
+      "name": "Copywriter",
+      "department": "email",
+      "role": "Email copy",
+      "status": "online",
+      "capabilities": ["Subject lines", "Body copy", "CTA optimization"],
+      "tools": ["Claude API", "Copy analyzer"],
+      "supportedTaskTypes": ["email_campaign"]
+    },
+    {
+      "id": "email-003",
+      "name": "Automation Builder",
+      "department": "email",
+      "role": "Drip campaigns",
+      "status": "online",
+      "capabilities": ["Flow design", "Trigger setup", "Nurture sequences"],
+      "tools": ["Claude API", "Automation platform"],
+      "supportedTaskTypes": ["email_campaign"]
+    },
+    {
+      "id": "email-004",
+      "name": "Deliverability Specialist",
+      "department": "email",
+      "role": "Inbox placement",
+      "status": "online",
+      "capabilities": ["Spam score analysis", "List hygiene", "Sender reputation"],
+      "tools": ["Email verification API", "Claude API"],
+      "supportedTaskTypes": ["analyze_performance"]
+    },
+    {
+      "id": "ads-001",
+      "name": "Google Ads Specialist",
+      "department": "ads",
+      "role": "Search ads",
+      "status": "online",
+      "capabilities": ["Ad copy", "Keyword bidding", "Quality score optimization"],
+      "tools": ["Google Ads API", "Claude API"],
+      "supportedTaskTypes": ["ad_copy"]
+    },
+    {
+      "id": "ads-002",
+      "name": "Facebook Ads Creator",
+      "department": "ads",
+      "role": "Social ads",
+      "status": "online",
+      "capabilities": ["Creative hooks", "Audience targeting", "Retargeting"],
+      "tools": ["Facebook Ads API", "Claude API"],
+      "supportedTaskTypes": ["ad_copy"]
+    },
+    {
+      "id": "ads-003",
+      "name": "Display Ad Designer",
+      "department": "ads",
+      "role": "Banner ads",
+      "status": "online",
+      "capabilities": ["Copy for banners", "CTA placement", "Size optimization"],
+      "tools": ["Claude API", "Ad specs database"],
+      "supportedTaskTypes": ["ad_copy"]
+    },
+    {
+      "id": "ads-004",
+      "name": "Video Ad Scripter",
+      "department": "ads",
+      "role": "Video advertising",
+      "status": "online",
+      "capabilities": ["15s scripts", "30s scripts", "YouTube pre-roll"],
+      "tools": ["Claude API", "Video ad specs"],
+      "supportedTaskTypes": ["ad_copy"]
+    },
+    {
+      "id": "ads-005",
+      "name": "Landing Page Optimizer",
+      "department": "ads",
+      "role": "Conversion optimization",
+      "status": "online",
+      "capabilities": ["Headline testing", "CTA optimization", "Page structure"],
+      "tools": ["Claude API", "Heatmap analyzer"],
+      "supportedTaskTypes": ["content_optimization"]
+    },
+    {
+      "id": "analytics-001",
+      "name": "Performance Analyst",
+      "department": "analytics",
+      "role": "Data insights",
+      "status": "online",
+      "capabilities": ["KPI tracking", "Trend analysis", "Report generation"],
+      "tools": ["Google Analytics API", "Claude API"],
+      "supportedTaskTypes": ["analyze_performance"]
+    },
+    {
+      "id": "analytics-002",
+      "name": "Attribution Specialist",
+      "department": "analytics",
+      "role": "Multi-touch attribution",
+      "status": "online",
+      "capabilities": ["Channel attribution", "Customer journey mapping", "ROI calculation"],
+      "tools": ["Attribution platform API", "Claude API"],
+      "supportedTaskTypes": ["analyze_performance"]
+    },
+    {
+      "id": "analytics-003",
+      "name": "A/B Test Analyst",
+      "department": "analytics",
+      "role": "Experimentation",
+      "status": "online",
+      "capabilities": ["Test design", "Statistical significance", "Winner selection"],
+      "tools": ["Testing platform API", "Claude API"],
+      "supportedTaskTypes": ["analyze_performance"]
+    },
+    {
+      "id": "analytics-004",
+      "name": "Competitive Intelligence",
+      "department": "analytics",
+      "role": "Market analysis",
+      "status": "online",
+      "capabilities": ["Competitor tracking", "Market trends", "Opportunity identification"],
+      "tools": ["Competitive intel tools", "Claude API"],
+      "supportedTaskTypes": ["analyze_performance"]
+    },
+    {
+      "id": "analytics-005",
+      "name": "Forecast Modeler",
+      "department": "analytics",
+      "role": "Predictive analytics",
+      "status": "online",
+      "capabilities": ["Growth forecasting", "Scenario modeling", "Budget planning"],
+      "tools": ["Analytics platform", "Claude API"],
+      "supportedTaskTypes": ["analyze_performance"]
+    },
+    {
+      "id": "brand-001",
+      "name": "Brand Strategist",
+      "department": "brand",
+      "role": "Brand positioning",
+      "status": "online",
+      "capabilities": ["Messaging frameworks", "Value propositions", "Brand voice"],
+      "tools": ["Claude API", "Brand analysis"],
+      "supportedTaskTypes": ["brand_guidelines"]
+    },
+    {
+      "id": "brand-002",
+      "name": "Tone & Voice Specialist",
+      "department": "brand",
+      "role": "Voice consistency",
+      "status": "online",
+      "capabilities": ["Voice guidelines", "Content audits", "Style enforcement"],
+      "tools": ["Claude API", "Content analyzer"],
+      "supportedTaskTypes": ["brand_guidelines"]
+    },
+    {
+      "id": "brand-003",
+      "name": "Visual Identity Coordinator",
+      "department": "brand",
+      "role": "Visual consistency",
+      "status": "online",
+      "capabilities": ["Image selection", "Color palette", "Typography guidelines"],
+      "tools": ["Claude API", "DAM system"],
+      "supportedTaskTypes": ["brand_guidelines"]
+    },
+    {
+      "id": "brand-004",
+      "name": "Crisis Communication Lead",
+      "department": "brand",
+      "role": "Reputation management",
+      "status": "online",
+      "capabilities": ["Crisis response", "Statement drafting", "Sentiment recovery"],
+      "tools": ["Claude API", "Crisis management"],
+      "supportedTaskTypes": ["email_campaign"]
+    },
+    {
+      "id": "brand-005",
+      "name": "Storytelling Architect",
+      "department": "brand",
+      "role": "Narrative development",
+      "status": "online",
+      "capabilities": ["Brand stories", "Origin narratives", "Customer narratives"],
+      "tools": ["Claude API", "Story frameworks"],
+      "supportedTaskTypes": ["write_blog"]
+    },
+    {
+      "id": "brand-006",
+      "name": "Partnership Communications",
+      "department": "brand",
+      "role": "B2B communications",
+      "status": "online",
+      "capabilities": ["Partnership announcements", "Co-marketing", "Sponsor messaging"],
+      "tools": ["Claude API", "PR templates"],
+      "supportedTaskTypes": ["email_campaign"]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "handoffs": [
+    {
+      "id": "handoff-001",
+      "fromAgent": "seo-001",
+      "toAgent": "content-002",
+      "reason": "Keyword brief ready for whitepaper",
+      "status": "pending",
+      "createdAt": 1738256500000,
+      "payload": {
+        "keywords": ["B2B marketing automation", "enterprise marketing platforms"],
+        "targetAudience": "CMOs and Marketing Directors",
+        "contentType": "whitepaper"
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "executions": [
+    {
+      "id": "exec-demo-001",
+      "agentId": "social-001",
+      "agentName": "LinkedIn Strategist",
+      "taskType": "create_linkedin_post",
+      "status": "completed",
+      "progress": 100,
+      "startedAt": 1738256400000,
+      "completedAt": 1738256403100,
+      "duration": 3100,
+      "tokensUsed": 1250,
+      "cost": 0,
+      "input": {
+        "topic": "AI in Marketing Automation"
+      },
+      "output": {
+        "post": "🤖 AI is transforming marketing automation...",
+        "hashtags": ["#AIMarketing", "#MarketingAutomation"]
+      }
+    },
+    {
+      "id": "exec-demo-002",
+      "agentId": "seo-001",
+      "agentName": "Keyword Researcher",
+      "taskType": "keyword_research",
+      "status": "completed",
+      "progress": 100,
+      "startedAt": 1738256340000,
+      "completedAt": 1738256341800,
+      "duration": 1800,
+      "tokensUsed": 980,
+      "cost": 0,
+      "input": {
+        "topic": "Marketing Automation Tools"
+      },
+      "output": {
+        "keywords": [
+          { "keyword": "marketing automation software", "volume": 5400, "difficulty": 68 },
+          { "keyword": "email automation tools", "volume": 3200, "difficulty": 54 }
+        ]
+      }
+    }
+  ]
+}

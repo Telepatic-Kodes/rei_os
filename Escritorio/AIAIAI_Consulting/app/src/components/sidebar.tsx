@@ -3,6 +3,7 @@ import Link from "next/link";
 const navItems = [
   { href: "/", label: "Resumen", icon: "~" },
   { href: "/projects", label: "Proyectos", icon: "#" },
+  { href: "/command", label: "Command Center", icon: "▐" },
   { href: "/tokens", label: "Tokens", icon: "$" },
   { href: "/analytics", label: "Analytics", icon: "^" },
   { href: "/quality", label: "Calidad", icon: "%" },
