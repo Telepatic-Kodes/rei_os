@@ -24,7 +24,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
 **Milestone Goal:** Make the dashboard self-updating with historical analytics and proactive budget alerts so nothing needs manual checking.
 
 - [x] **Phase 5: Data Infrastructure & Safety** — Safe, typed data foundation for automated writes
-- [ ] **Phase 6: Automated Sync** — Eliminate manual script execution with scheduled and on-demand sync
+- [x] **Phase 6: Automated Sync** — Eliminate manual script execution with scheduled and on-demand sync
 - [ ] **Phase 7: Analytics & Charts** — Visual token spend trends and budget projections
 - [ ] **Phase 8: Budget Alerts & Notifications** — Proactive warnings before budget overruns
 
@@ -59,9 +59,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01-PLAN.md — SyncManager orchestrator + croner cron process + sync config
-- [ ] 06-02-PLAN.md — Manual sync API route, refresh button, sync status indicator in dashboard header
-- [ ] 06-03-PLAN.md — Pre-computed analytics generator and JSONL history integration
+- [x] 06-01-PLAN.md — SyncManager orchestrator + croner cron process + sync config
+- [x] 06-02-PLAN.md — Manual sync API route, refresh button, sync status indicator in dashboard header
+- [x] 06-03-PLAN.md — Pre-computed analytics generator and JSONL history integration
 
 ### Phase 7: Analytics & Charts
 **Goal**: Users can see token spend trends, cost breakdowns, and budget projections at a glance
@@ -104,10 +104,10 @@ Plans:
 | 3. Data Persistence | v1.0 | 3/3 | Complete | 2026-01-30 |
 | 4. Auto-sync | v1.0 | 2/2 | Complete | 2026-01-30 |
 | 5. Data Infrastructure & Safety | v2.0 | 2/2 | Complete | 2026-01-31 |
-| 6. Automated Sync | v2.0 | 0/3 | Not started | - |
+| 6. Automated Sync | v2.0 | 3/3 | Complete | 2026-01-31 |
 | 7. Analytics & Charts | v2.0 | 0/2 | Not started | - |
 | 8. Budget Alerts & Notifications | v2.0 | 0/2 | Not started | - |
 
 ---
 *Roadmap created: 2026-01-30*
-*Last updated: 2026-01-31 after Phase 6 planning*
+*Last updated: 2026-01-31 after Phase 6 execution*

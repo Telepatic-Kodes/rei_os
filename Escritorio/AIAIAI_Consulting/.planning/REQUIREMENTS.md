@@ -9,19 +9,19 @@ Requirements for milestone v2.0: Analytics, Automation & Alerts.
 
 ### Automation
 
-- [ ] **AUTO-01**: Cron scheduler runs all sync scripts automatically on configurable interval
-- [ ] **AUTO-02**: Manual refresh button in dashboard header triggers sync on demand
-- [ ] **AUTO-03**: Sync status indicator shows last sync time and success/error state
+- [x] **AUTO-01**: Cron scheduler runs all sync scripts automatically on configurable interval
+- [x] **AUTO-02**: Manual refresh button in dashboard header triggers sync on demand
+- [x] **AUTO-03**: Sync status indicator shows last sync time and success/error state
 - [x] **AUTO-04**: Sync scripts use atomic writes (temp file + rename) to prevent JSON corruption
 - [x] **AUTO-05**: Sync scripts are idempotent (running twice produces same result)
 
 ### Analytics
 
-- [ ] **ANLT-01**: Historical data stored as JSONL append-only logs with daily snapshots
+- [x] **ANLT-01**: Historical data stored as JSONL append-only logs with daily snapshots
 - [ ] **ANLT-02**: Per-project token spend line chart showing trends over days/weeks
 - [ ] **ANLT-03**: Cost-per-model breakdown (opus vs sonnet spending)
 - [ ] **ANLT-04**: Burn rate projection showing predicted budget exhaustion date
-- [ ] **ANLT-05**: Analytics pre-computed in sync scripts, not calculated client-side
+- [x] **ANLT-05**: Analytics pre-computed in sync scripts, not calculated client-side
 
 ### Alerts
 
@@ -67,11 +67,11 @@ Deferred to v3.0+.
 | INFR-03 | Phase 5 | Complete |
 | AUTO-04 | Phase 5 | Complete |
 | AUTO-05 | Phase 5 | Complete |
-| AUTO-01 | Phase 6 | Pending |
-| AUTO-02 | Phase 6 | Pending |
-| AUTO-03 | Phase 6 | Pending |
-| ANLT-01 | Phase 6 | Pending |
-| ANLT-05 | Phase 6 | Pending |
+| AUTO-01 | Phase 6 | Complete |
+| AUTO-02 | Phase 6 | Complete |
+| AUTO-03 | Phase 6 | Complete |
+| ANLT-01 | Phase 6 | Complete |
+| ANLT-05 | Phase 6 | Complete |
 | ANLT-02 | Phase 7 | Pending |
 | ANLT-03 | Phase 7 | Pending |
 | ANLT-04 | Phase 7 | Pending |
@@ -88,4 +88,4 @@ Deferred to v3.0+.
 
 ---
 *Requirements defined: 2026-01-30*
-*Last updated: 2026-01-31 after Phase 5 completion*
+*Last updated: 2026-01-31 after Phase 6 completion*

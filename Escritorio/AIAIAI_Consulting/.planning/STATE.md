@@ -5,15 +5,15 @@
 See: .planning/PROJECT.md (updated 2026-01-30)
 
 **Core value:** One place to see the status, cost, and health of every project
-**Current focus:** v2.0 Phase 6 — Automated Sync
+**Current focus:** v2.0 Phase 7 — Analytics & Charts
 
 ## Current Position
 
 - **Milestone:** v2.0 Analytics, Automation & Alerts
-- **Phase:** 6 of 8 (Automated Sync)
-- **Plan:** 3 of 3 in current phase
-- **Status:** In progress
-- **Last activity:** 2026-01-31 — Completed 06-03-PLAN.md
+- **Phase:** 7 of 8 (Analytics & Charts)
+- **Plan:** 0 of 2 in current phase
+- **Status:** Ready to plan
+- **Last activity:** 2026-01-31 — Phase 6 verified and complete
 
 Progress: [█████████░] 88% (7/7 v1.0 plans done, 5/9 v2.0 plans done)
 
@@ -42,26 +42,25 @@ See: .planning/PROJECT.md Key Decisions table (10 decisions from v1.0)
 Recent decisions affecting current work:
 - v1.0: JSON files over database (continuing into v2.0 with JSONL for history)
 - v1.0: Session-based merge for token sync (Phase 6 builds on this)
-- v2.0: Cron runs as separate Node process, NOT inside Next.js (research finding)
+- v2.0: Cron runs as separate Node process, NOT inside Next.js
 - 05-01: Zod for runtime validation instead of TypeScript-only types
 - 05-01: Tmp+rename pattern for atomic JSON writes, direct append for JSONL
 - 05-01: Monthly JSONL rotation (YYYY-MM naming) with 6-month retention
-- 05-02: Eliminate all 'as T' type casts in favor of Zod runtime validation
-- 05-02: Re-export types from data.ts for backward compatibility
 - 05-02: Deduplicate projects by name (not id) for idempotency
 - 06-01: Lock file with 1-hour stale threshold for sync coordination
 - 06-01: Concurrently for dev workflow (Next.js + cron together)
-- 06-01: Install croner at root level for script access
-- 06-03: Calculate burn rate as totalCost / days for budget planning
-- 06-03: Generate analytics.json on every sync run for fresh data
-- 06-03: Store analytics as auto-generated file (gitignored, not tracked)
+- 06-01: croner at root level for script access
+- 06-02: sonner for toast notifications (official shadcn/ui component)
+- 06-03: Single analytics.json with nested 7d/30d/90d windows
+- 06-03: generateAnalytics() called after every sync run
+- 06-03: Burn rate = totalCost / days for budget planning
 
 ### Open Issues
 
 - Token sync requires ANTHROPIC_ADMIN_KEY and ANTHROPIC_ORG_ID env vars
 - React 19 compatibility with recharts needs verification before Phase 7
-- No retry logic on sync failure (06-01 logs error but doesn't retry)
-- Cron interval change requires process restart (no hot reload)
+- No retry logic on sync failure (logged but no auto-retry)
+- Cron interval change requires process restart
 
 ### Blockers
 
@@ -69,9 +68,9 @@ None.
 
 ## Session Continuity
 
-- **Last session:** 2026-01-31 01:19 UTC
-- **Stopped at:** Completed 06-03-PLAN.md
+- **Last session:** 2026-01-31
+- **Stopped at:** Phase 6 complete, ready for Phase 7
 - **Resume file:** None
 
 ---
-*Last updated: 2026-01-31 after 06-03 execution complete*
+*Last updated: 2026-01-31 after Phase 6 execution complete*
