@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-01-30)
 
 - **Milestone:** v2.0 Analytics, Automation & Alerts
 - **Phase:** 8 of 8 (Budget Alerts & Notifications)
-- **Plan:** 0 of 2 in current phase
-- **Status:** Ready to plan
-- **Last activity:** 2026-01-31 — Phase 7 verified and complete
+- **Plan:** 1 of 2 in current phase
+- **Status:** In progress
+- **Last activity:** 2026-01-31 — Completed 08-01-PLAN.md
 
-Progress: [█████████░] 95% (7/7 v1.0 plans done, 7/9 v2.0 plans done)
+Progress: [█████████░] 97% (7/7 v1.0 plans done, 8/9 v2.0 plans done)
 
 ## Performance Metrics
 
@@ -31,7 +31,7 @@ Progress: [█████████░] 95% (7/7 v1.0 plans done, 7/9 v2.0 pl
 | 5. Data Infrastructure | 2/2 | Complete |
 | 6. Automated Sync | 3/3 | Complete |
 | 7. Analytics & Charts | 2/2 | Complete |
-| 8. Budget Alerts | 0/2 | Not started |
+| 8. Budget Alerts | 1/2 | In progress |
 
 ## Accumulated Context
 
@@ -60,6 +60,9 @@ Recent decisions affecting current work:
 - 07-02: Horizontal bar chart layout for model breakdown (better name readability)
 - 07-02: Burn rate severity thresholds: critical (<7d), warning (<15d), normal (>=15d)
 - 07-02: Burn rate uses 30d window for stable projections
+- 08-01: Two alert modes - evaluateAlerts (fire-once) and getActiveAlerts (stateless for banners)
+- 08-01: Per-session dismiss via localStorage, not server-side
+- 08-01: 30d analytics window used as monthly spend proxy
 
 ### Open Issues
 
@@ -74,8 +77,8 @@ None.
 ## Session Continuity
 
 - **Last session:** 2026-01-31
-- **Stopped at:** Completed 07-02-PLAN.md (Phase 7 complete)
+- **Stopped at:** Completed 08-01-PLAN.md
 - **Resume file:** None
 
 ---
-*Last updated: 2026-01-31 after 07-02 execution complete*
+*Last updated: 2026-01-31 after 08-01 execution complete*
