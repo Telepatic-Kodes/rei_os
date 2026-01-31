@@ -4,8 +4,8 @@ import type { ExecuteAgentRequest, ExecuteAgentResponse, Execution } from '@/lib
 
 export async function POST(request: NextRequest) {
   try {
-    const body: ExecuteAgentRequest = await request.json();
-    const { agentId, taskType, input } = body;
+    const body: ExecuteAgentRequest & { project?: string } = await request.json();
+    const { agentId, taskType, input, project } = body;
 
     // Validate agent exists
     const agent = await getAgentById(agentId);
@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
       progress: 0,
       startedAt: Date.now(),
       input,
+      project,
     };
 
     await addExecution(execution);

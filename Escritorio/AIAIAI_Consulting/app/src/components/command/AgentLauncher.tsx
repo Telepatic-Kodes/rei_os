@@ -13,6 +13,7 @@ export function AgentLauncher({ agents, onExecutionStarted }: AgentLauncherProps
   const [selectedAgentId, setSelectedAgentId] = useState<string>('');
   const [taskType, setTaskType] = useState<TaskType | ''>('');
   const [input, setInput] = useState<Record<string, string>>({});
+  const [project, setProject] = useState<string>('');
   const [executing, setExecuting] = useState(false);
 
   const selectedAgent = agents.find(a => a.id === selectedAgentId);
@@ -33,6 +34,7 @@ export function AgentLauncher({ agents, onExecutionStarted }: AgentLauncherProps
           agentId: selectedAgentId,
           taskType,
           input,
+          project: project || undefined,
         }),
       });
 
@@ -132,18 +134,37 @@ export function AgentLauncher({ agents, onExecutionStarted }: AgentLauncherProps
 
         {/* Task Input */}
         {taskType && (
-          <div>
-            <label className="block text-cyan-400 text-sm mb-2 tracking-wide">
-              INPUT
-            </label>
-            <input
-              type="text"
-              placeholder="Enter topic or content..."
-              value={input.topic || ''}
-              onChange={(e) => setInput({ ...input, topic: e.target.value })}
-              className="w-full bg-black border-2 border-cyan-400 text-white p-3 placeholder-gray-600 focus:outline-none focus:border-green-400 transition-colors"
-            />
-          </div>
+          <>
+            <div>
+              <label className="block text-cyan-400 text-sm mb-2 tracking-wide">
+                INPUT
+              </label>
+              <input
+                type="text"
+                placeholder="Enter topic or content..."
+                value={input.topic || ''}
+                onChange={(e) => setInput({ ...input, topic: e.target.value })}
+                className="w-full bg-black border-2 border-cyan-400 text-white p-3 placeholder-gray-600 focus:outline-none focus:border-green-400 transition-colors"
+              />
+            </div>
+
+            {/* Project Tag */}
+            <div>
+              <label className="block text-purple-400 text-sm mb-2 tracking-wide">
+                PROJECT (Optional)
+              </label>
+              <input
+                type="text"
+                placeholder="e.g., inmobiliariapp, amd, guitarrap..."
+                value={project}
+                onChange={(e) => setProject(e.target.value)}
+                className="w-full bg-black border-2 border-purple-400 text-white p-3 placeholder-gray-600 focus:outline-none focus:border-purple-300 transition-colors"
+              />
+              <div className="text-xs text-gray-500 mt-1">
+                Tag this execution with a project name for filtering
+              </div>
+            </div>
+          </>
         )}
 
         {/* Execute Button */}

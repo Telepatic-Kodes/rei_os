@@ -50,6 +50,7 @@ export interface Execution {
   input?: Record<string, unknown>;
   output?: Record<string, unknown>;
   error?: string;
+  project?: string; // Optional project tag
 }
 
 export interface WorkflowStep {

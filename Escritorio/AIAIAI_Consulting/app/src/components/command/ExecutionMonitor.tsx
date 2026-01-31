@@ -2,21 +2,62 @@
 
 import { useState, useEffect } from 'react';
 import type { Execution } from '@/lib/types/command';
+import { ExecutionDetails } from './ExecutionDetails';
 
 interface ExecutionMonitorProps {
   executions: Execution[];
 }
 
 export function ExecutionMonitor({ executions }: ExecutionMonitorProps) {
-  const activeExecutions = executions.filter(e => e.status === 'running' || e.status === 'queued');
-  const recentExecutions = executions.filter(e => e.status === 'completed' || e.status === 'failed').slice(0, 10);
+  const [selectedExecution, setSelectedExecution] = useState<Execution | null>(null);
+  const [projectFilter, setProjectFilter] = useState<string>('all');
+
+  // Extract unique projects
+  const projects = Array.from(new Set(executions.map(e => e.project).filter(Boolean))) as string[];
+
+  // Apply filters
+  const filteredExecutions = projectFilter === 'all'
+    ? executions
+    : executions.filter(e => e.project === projectFilter);
+
+  const activeExecutions = filteredExecutions.filter(e => e.status === 'running' || e.status === 'queued');
+  const recentExecutions = filteredExecutions.filter(e => e.status === 'completed' || e.status === 'failed').slice(0, 10);
 
   return (
+    <>
+      {selectedExecution && (
+        <ExecutionDetails
+          execution={selectedExecution}
+          onClose={() => setSelectedExecution(null)}
+        />
+      )}
+
     <div className="border-2 border-green-400 bg-zinc-950 p-6 relative min-h-[600px]">
       {/* Panel Label */}
       <div className="absolute -top-3 left-4 bg-black px-2 text-green-400 text-xs tracking-widest">
         ▐ EXECUTION MONITOR ▌
       </div>
+
+      {/* Project Filter */}
+      {projects.length > 0 && (
+        <div className="mb-4">
+          <label className="block text-purple-400 text-xs mb-2 uppercase tracking-wide">
+            Filter by Project
+          </label>
+          <select
+            value={projectFilter}
+            onChange={(e) => setProjectFilter(e.target.value)}
+            className="bg-black border-2 border-purple-400 text-purple-400 p-2 text-sm uppercase tracking-wide focus:outline-none focus:border-purple-300 transition-colors"
+          >
+            <option value="all">ALL PROJECTS ({executions.length})</option>
+            {projects.map(project => (
+              <option key={project} value={project}>
+                {project.toUpperCase()} ({executions.filter(e => e.project === project).length})
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div className="space-y-6">
         {/* Active Executions */}
@@ -27,7 +68,12 @@ export function ExecutionMonitor({ executions }: ExecutionMonitorProps) {
             </div>
             <div className="space-y-3">
               {activeExecutions.map(exec => (
-                <ExecutionCard key={exec.id} execution={exec} active />
+                <ExecutionCard
+                  key={exec.id}
+                  execution={exec}
+                  active
+                  onClick={() => setSelectedExecution(exec)}
+                />
               ))}
             </div>
           </div>
@@ -51,17 +97,30 @@ export function ExecutionMonitor({ executions }: ExecutionMonitorProps) {
           ) : (
             <div className="space-y-2">
               {recentExecutions.map(exec => (
-                <ExecutionCard key={exec.id} execution={exec} />
+                <ExecutionCard
+                  key={exec.id}
+                  execution={exec}
+                  onClick={() => setSelectedExecution(exec)}
+                />
               ))}
             </div>
           )}
         </div>
       </div>
     </div>
+    </>
   );
 }
 
-function ExecutionCard({ execution, active = false }: { execution: Execution; active?: boolean }) {
+function ExecutionCard({
+  execution,
+  active = false,
+  onClick,
+}: {
+  execution: Execution;
+  active?: boolean;
+  onClick?: () => void;
+}) {
   const statusConfig = {
     running: { icon: '⟳', color: 'text-yellow-400', borderColor: 'border-yellow-400' },
     queued: { icon: '○', color: 'text-gray-400', borderColor: 'border-gray-400' },
@@ -72,7 +131,10 @@ function ExecutionCard({ execution, active = false }: { execution: Execution; ac
   const config = statusConfig[execution.status];
 
   return (
-    <div className={`border-l-4 ${config.borderColor} bg-black p-4 relative overflow-hidden ${active ? 'shadow-lg' : ''}`}>
+    <div
+      onClick={onClick}
+      className={`border-l-4 ${config.borderColor} bg-black p-4 relative overflow-hidden ${active ? 'shadow-lg' : ''} ${onClick ? 'cursor-pointer hover:bg-zinc-900 transition-colors' : ''}`}
+    >
       {/* Scanline effect for active executions */}
       {active && (
         <div className="absolute inset-0 pointer-events-none">
@@ -81,9 +143,16 @@ function ExecutionCard({ execution, active = false }: { execution: Execution; ac
       )}
 
       <div className="flex items-start justify-between mb-2">
-        <div>
-          <div className="font-bold text-white text-sm uppercase">
-            {execution.agentId}
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-1">
+            <div className="font-bold text-white text-sm uppercase">
+              {execution.agentId}
+            </div>
+            {execution.project && (
+              <span className="text-xs bg-purple-950 border border-purple-400 text-purple-400 px-2 py-0.5 uppercase">
+                {execution.project}
+              </span>
+            )}
           </div>
           <div className="text-xs text-gray-400">
             {execution.agentName}
