@@ -1,9 +1,12 @@
-import { getAnalytics, getDailySpendByModel } from "@/lib/data";
+import { getAnalytics, getDailySpendByModel, getBudgetConfig } from "@/lib/data";
 import { SpendTrendChart } from "@/components/analytics/spend-trend-chart";
+import { ModelBreakdownChart } from "@/components/analytics/model-breakdown-chart";
+import { BurnRateCard } from "@/components/analytics/burn-rate-card";
 import { StatCard } from "@/components/stat-card";
 
 export default function AnalyticsPage() {
   const analytics = getAnalytics();
+  const budget = getBudgetConfig();
   const data7d = getDailySpendByModel(7);
   const data30d = getDailySpendByModel(30);
 
@@ -42,18 +45,14 @@ export default function AnalyticsPage() {
         <StatCard title="Active Models" value={activeModels.toString()} />
       </div>
 
-      {/* Spend trend chart */}
-      <SpendTrendChart data7d={data7d} data30d={data30d} modelKeys={modelKeys} />
-
-      {/* Placeholder for Plan 07-02 charts */}
+      {/* Spend trend and burn rate cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-lg border border-dashed border-muted-foreground/25 p-8 text-center text-muted-foreground">
-          Cost by Model (Plan 07-02)
-        </div>
-        <div className="rounded-lg border border-dashed border-muted-foreground/25 p-8 text-center text-muted-foreground">
-          Burn Rate Projection (Plan 07-02)
-        </div>
+        <SpendTrendChart data7d={data7d} data30d={data30d} modelKeys={modelKeys} />
+        <BurnRateCard analytics={analytics} budget={budget.monthly} />
       </div>
+
+      {/* Model breakdown chart */}
+      <ModelBreakdownChart data7d={analytics.windows["7d"]} data30d={analytics.windows["30d"]} />
     </div>
   );
 }
