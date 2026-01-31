@@ -103,6 +103,35 @@ export const AnalyticsSchema = z.object({
   }),
 });
 
+// Alert threshold schema
+export const AlertThresholdSchema = z.object({
+  percent: z.number().min(0).max(100),
+  label: z.string().optional(),
+});
+
+// Alert configuration schema
+export const AlertConfigSchema = z.object({
+  globalBudget: z.number().min(1),
+  globalThresholds: z.array(AlertThresholdSchema),
+  perProjectLimits: z.record(z.string(), z.number().min(0)),
+});
+
+// Alert state schema (tracks fired alerts per month)
+export const AlertStateSchema = z.object({
+  firedAlerts: z.array(z.string()),
+  lastReset: z.string(),
+  month: z.string(),
+});
+
+// Alert result schema
+export const AlertResultSchema = z.object({
+  type: z.enum(["global", "project"]),
+  level: z.enum(["warning", "critical"]),
+  message: z.string(),
+  alertKey: z.string(),
+  projectName: z.string().optional(),
+});
+
 // Export inferred TypeScript types
 export type Project = z.infer<typeof ProjectSchema>;
 export type TokenEntry = z.infer<typeof TokenEntrySchema>;
@@ -114,6 +143,10 @@ export type SyncConfig = z.infer<typeof SyncConfigSchema>;
 export type SyncStatus = z.infer<typeof SyncStatusSchema>;
 export type AnalyticsWindow = z.infer<typeof AnalyticsWindowSchema>;
 export type Analytics = z.infer<typeof AnalyticsSchema>;
+export type AlertThreshold = z.infer<typeof AlertThresholdSchema>;
+export type AlertConfig = z.infer<typeof AlertConfigSchema>;
+export type AlertState = z.infer<typeof AlertStateSchema>;
+export type AlertResult = z.infer<typeof AlertResultSchema>;
 
 /**
  * Validates data against a Zod schema.

@@ -1,0 +1,8 @@
+{
+  "globalBudget": 200,
+  "globalThresholds": [
+    { "percent": 75, "label": "Warning" },
+    { "percent": 90, "label": "Critical" }
+  ],
+  "perProjectLimits": {}
+}
