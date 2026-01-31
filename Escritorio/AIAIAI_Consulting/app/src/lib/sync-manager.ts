@@ -2,6 +2,7 @@ import { execSync } from "node:child_process";
 import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { atomicWriteJson } from "./atomic-write";
+import { generateAnalytics } from "./analytics";
 import { SyncStatusSchema } from "./schemas";
 import type { SyncStatus } from "./schemas";
 
@@ -61,6 +62,10 @@ export async function runAllSyncs(): Promise<{
       cwd: ROOT,
       stdio: "inherit",
     });
+
+    // Generate pre-computed analytics from synced data
+    console.log("Generating analytics...");
+    await generateAnalytics();
 
     const durationMs = Date.now() - startTime;
     const status: SyncStatus = {
