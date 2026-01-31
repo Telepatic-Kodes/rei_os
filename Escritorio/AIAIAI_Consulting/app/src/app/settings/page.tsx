@@ -222,28 +222,27 @@ export default function SettingsPage() {
 
       <Card className="p-6 space-y-4">
         <h2 className="text-lg font-semibold">Browser Notifications</h2>
-        <p className="text-sm text-muted-foreground">
-          Permission status:{" "}
-          <span className="font-medium">
-            {notifPermission === "granted"
-              ? "Enabled"
-              : notifPermission === "denied"
-                ? "Blocked"
-                : "Not requested"}
-          </span>
-        </p>
-        {notifPermission === "denied" ? (
-          <p className="text-sm text-muted-foreground">
-            Notifications are blocked. Please enable them in your browser settings.
+        {notifPermission === "granted" ? (
+          <p className="text-sm text-green-600 font-medium">
+            Browser notifications enabled
           </p>
-        ) : notifPermission !== "granted" ? (
-          <button
-            onClick={requestNotifPermission}
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90"
-          >
-            Enable Browser Notifications
-          </button>
-        ) : null}
+        ) : notifPermission === "denied" ? (
+          <p className="text-sm text-destructive">
+            Notifications blocked. Enable in browser settings.
+          </p>
+        ) : (
+          <>
+            <p className="text-sm text-muted-foreground">
+              Permission status: <span className="font-medium">Not requested</span>
+            </p>
+            <button
+              onClick={requestNotifPermission}
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90"
+            >
+              Enable Browser Notifications
+            </button>
+          </>
+        )}
       </Card>
     </div>
   );
