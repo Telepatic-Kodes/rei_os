@@ -6,6 +6,7 @@ import {
   TokenDataSchema,
   QualityEntrySchema,
   BudgetConfigSchema,
+  AnalyticsSchema,
 } from "./schemas";
 import type {
   Project,
@@ -13,11 +14,12 @@ import type {
   TokenEntry,
   QualityEntry,
   BudgetConfig,
+  Analytics,
 } from "./schemas";
 import { atomicWriteJson } from "./atomic-write";
 
 // Re-export types for backward compatibility
-export type { Project, TokenData, TokenEntry, QualityEntry, BudgetConfig };
+export type { Project, TokenData, TokenEntry, QualityEntry, BudgetConfig, Analytics };
 
 const dataDir = path.join(process.cwd(), "..", "data");
 
@@ -95,4 +97,49 @@ export function getQualityByProject(project: string): QualityEntry[] {
  */
 export function getBudgetConfig(): BudgetConfig {
   return readValidatedJson("config/budget.json", BudgetConfigSchema);
+}
+
+/**
+ * Gets analytics data with runtime validation.
+ */
+export function getAnalytics(): Analytics {
+  return readValidatedJson("analytics.json", AnalyticsSchema);
+}
+
+/**
+ * Gets daily spend data grouped by model for charting.
+ * @param days - Number of days to include (7, 30, or 90)
+ * @returns Array of daily data points with date and per-model costs
+ */
+export function getDailySpendByModel(
+  days: 7 | 30 | 90
+): Array<Record<string, string | number>> {
+  const tokenData = getTokenData();
+  const cutoffDate = new Date();
+  cutoffDate.setDate(cutoffDate.getDate() - days);
+  const cutoff = cutoffDate.toISOString().split("T")[0];
+
+  // Filter entries within the time window
+  const entries = tokenData.entries.filter((e) => e.date >= cutoff);
+
+  // Group by date and model, summing costs
+  const byDate: Record<string, Record<string, number>> = {};
+  for (const entry of entries) {
+    if (!byDate[entry.date]) {
+      byDate[entry.date] = {};
+    }
+    // Shorten model name: "claude-opus-4-5" -> "opus45"
+    const shortModel = entry.model
+      .replace("claude-", "")
+      .replace(/-(\d)/g, "$1");
+    byDate[entry.date][shortModel] = (byDate[entry.date][shortModel] || 0) + entry.cost;
+  }
+
+  // Convert to array format suitable for Recharts
+  return Object.entries(byDate)
+    .map(([date, models]) => ({
+      date,
+      ...models,
+    }))
+    .sort((a, b) => (a.date as string).localeCompare(b.date as string));
 }
