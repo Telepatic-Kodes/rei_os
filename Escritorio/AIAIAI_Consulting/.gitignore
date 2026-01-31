@@ -2,6 +2,7 @@
 data/history/
 data/sync-status.json
 data/.sync-lock
+data/analytics.json
 
 # Keep tracked
 !data/config/

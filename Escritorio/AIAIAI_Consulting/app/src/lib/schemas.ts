@@ -77,6 +77,32 @@ export const SyncStatusSchema = z.object({
   error: z.string().optional(),
 });
 
+// Analytics window schema (7d, 30d, 90d)
+export const AnalyticsWindowSchema = z.object({
+  totalCost: z.number(),
+  tokensIn: z.number(),
+  tokensOut: z.number(),
+  byModel: z.record(
+    z.string(),
+    z.object({
+      cost: z.number(),
+      tokensIn: z.number(),
+      tokensOut: z.number(),
+    })
+  ),
+  burnRate: z.number(), // daily average cost
+});
+
+// Analytics schema (pre-computed metrics)
+export const AnalyticsSchema = z.object({
+  generatedAt: z.string(),
+  windows: z.object({
+    "7d": AnalyticsWindowSchema,
+    "30d": AnalyticsWindowSchema,
+    "90d": AnalyticsWindowSchema,
+  }),
+});
+
 // Export inferred TypeScript types
 export type Project = z.infer<typeof ProjectSchema>;
 export type TokenEntry = z.infer<typeof TokenEntrySchema>;
@@ -86,6 +112,8 @@ export type QualityEntry = z.infer<typeof QualityEntrySchema>;
 export type HistoryEntry = z.infer<typeof HistoryEntrySchema>;
 export type SyncConfig = z.infer<typeof SyncConfigSchema>;
 export type SyncStatus = z.infer<typeof SyncStatusSchema>;
+export type AnalyticsWindow = z.infer<typeof AnalyticsWindowSchema>;
+export type Analytics = z.infer<typeof AnalyticsSchema>;
 
 /**
  * Validates data against a Zod schema.
