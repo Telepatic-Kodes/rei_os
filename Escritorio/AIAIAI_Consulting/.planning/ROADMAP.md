@@ -3,7 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 Operational Dashboard** — Phases 1-4 (shipped 2026-01-30)
-- 🚧 **v2.0 Analytics, Automation & Alerts** — Phases 5-8 (in progress)
+- ✅ **v2.0 Analytics, Automation & Alerts** — Phases 5-8 (shipped 2026-01-31)
 
 ## Phases
 
@@ -19,14 +19,14 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
 
 </details>
 
-### 🚧 v2.0 Analytics, Automation & Alerts (In Progress)
+### ✅ v2.0 Analytics, Automation & Alerts (SHIPPED 2026-01-31)
 
 **Milestone Goal:** Make the dashboard self-updating with historical analytics and proactive budget alerts so nothing needs manual checking.
 
 - [x] **Phase 5: Data Infrastructure & Safety** — Safe, typed data foundation for automated writes
 - [x] **Phase 6: Automated Sync** — Eliminate manual script execution with scheduled and on-demand sync
 - [x] **Phase 7: Analytics & Charts** — Visual token spend trends and budget projections
-- [ ] **Phase 8: Budget Alerts & Notifications** — Proactive warnings before budget overruns
+- [x] **Phase 8: Budget Alerts & Notifications** — Proactive warnings before budget overruns
 
 ## Phase Details
 
@@ -90,8 +90,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Alert config, threshold evaluation, dashboard banners, settings page
-- [ ] 08-02-PLAN.md — Desktop notifications (node-notifier) and browser Notification API
+- [x] 08-01-PLAN.md — Alert config, threshold evaluation, dashboard banners, settings page
+- [x] 08-02-PLAN.md — Desktop notifications (node-notifier) and browser Notification API
 
 ## Progress
 
@@ -106,8 +106,8 @@ Plans:
 | 5. Data Infrastructure & Safety | v2.0 | 2/2 | Complete | 2026-01-31 |
 | 6. Automated Sync | v2.0 | 3/3 | Complete | 2026-01-31 |
 | 7. Analytics & Charts | v2.0 | 2/2 | Complete | 2026-01-31 |
-| 8. Budget Alerts & Notifications | v2.0 | 0/2 | Not started | - |
+| 8. Budget Alerts & Notifications | v2.0 | 2/2 | Complete | 2026-01-31 |
 
 ---
 *Roadmap created: 2026-01-30*
-*Last updated: 2026-01-31 after Phase 7 execution*
+*Last updated: 2026-01-31 after Phase 8 execution*

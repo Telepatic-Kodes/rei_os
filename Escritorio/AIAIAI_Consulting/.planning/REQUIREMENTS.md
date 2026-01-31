@@ -25,11 +25,11 @@ Requirements for milestone v2.0: Analytics, Automation & Alerts.
 
 ### Alerts
 
-- [ ] **ALRT-01**: Global budget threshold alerts at configurable levels (default 75%, 90%)
-- [ ] **ALRT-02**: Per-project budget limits configurable via JSON config
-- [ ] **ALRT-03**: Alert banner displayed in dashboard when thresholds crossed
-- [ ] **ALRT-04**: Desktop notifications via node-notifier when sync detects threshold breach
-- [ ] **ALRT-05**: Browser Notification API for in-app alerts when tab is open
+- [x] **ALRT-01**: Global budget threshold alerts at configurable levels (default 75%, 90%)
+- [x] **ALRT-02**: Per-project budget limits configurable via JSON config
+- [x] **ALRT-03**: Alert banner displayed in dashboard when thresholds crossed
+- [x] **ALRT-04**: Desktop notifications via node-notifier when sync detects threshold breach
+- [x] **ALRT-05**: Browser Notification API for in-app alerts when tab is open
 
 ### Infrastructure
 
@@ -75,11 +75,11 @@ Deferred to v3.0+.
 | ANLT-02 | Phase 7 | Complete |
 | ANLT-03 | Phase 7 | Complete |
 | ANLT-04 | Phase 7 | Complete |
-| ALRT-01 | Phase 8 | Pending |
-| ALRT-02 | Phase 8 | Pending |
-| ALRT-03 | Phase 8 | Pending |
-| ALRT-04 | Phase 8 | Pending |
-| ALRT-05 | Phase 8 | Pending |
+| ALRT-01 | Phase 8 | Complete |
+| ALRT-02 | Phase 8 | Complete |
+| ALRT-03 | Phase 8 | Complete |
+| ALRT-04 | Phase 8 | Complete |
+| ALRT-05 | Phase 8 | Complete |
 
 **Coverage:**
 - v2.0 requirements: 18 total
@@ -88,4 +88,4 @@ Deferred to v3.0+.
 
 ---
 *Requirements defined: 2026-01-30*
-*Last updated: 2026-01-31 after Phase 6 completion*
+*Last updated: 2026-01-31 after Phase 8 completion — all v2.0 requirements complete*
