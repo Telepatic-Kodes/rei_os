@@ -7,3 +7,6 @@ data/analytics.json
 # Keep tracked
 !data/config/
 !data/*.json
+
+# Git worktrees
+.worktrees/
