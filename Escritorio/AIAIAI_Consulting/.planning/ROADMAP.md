@@ -23,7 +23,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
 
 **Milestone Goal:** Make the dashboard self-updating with historical analytics and proactive budget alerts so nothing needs manual checking.
 
-- [ ] **Phase 5: Data Infrastructure & Safety** — Safe, typed data foundation for automated writes
+- [x] **Phase 5: Data Infrastructure & Safety** — Safe, typed data foundation for automated writes
 - [ ] **Phase 6: Automated Sync** — Eliminate manual script execution with scheduled and on-demand sync
 - [ ] **Phase 7: Analytics & Charts** — Visual token spend trends and budget projections
 - [ ] **Phase 8: Budget Alerts & Notifications** — Proactive warnings before budget overruns
@@ -43,8 +43,8 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Zod schemas, atomic write utilities, JSONL history infrastructure, budget config extraction
-- [ ] 05-02-PLAN.md — Refactor data.ts with validation, update sync scripts, gitignore setup
+- [x] 05-01-PLAN.md — Zod schemas, atomic write utilities, JSONL history infrastructure, budget config extraction
+- [x] 05-02-PLAN.md — Refactor data.ts with validation, update sync scripts, gitignore setup
 
 ### Phase 6: Automated Sync
 **Goal**: Dashboard data stays current without manual intervention, with visible sync status
@@ -103,11 +103,11 @@ Plans:
 | 2. Kanban Board | v1.0 | 1/1 | Complete | 2026-01-29 |
 | 3. Data Persistence | v1.0 | 3/3 | Complete | 2026-01-30 |
 | 4. Auto-sync | v1.0 | 2/2 | Complete | 2026-01-30 |
-| 5. Data Infrastructure & Safety | v2.0 | 0/2 | Planned | - |
+| 5. Data Infrastructure & Safety | v2.0 | 2/2 | Complete | 2026-01-31 |
 | 6. Automated Sync | v2.0 | 0/3 | Not started | - |
 | 7. Analytics & Charts | v2.0 | 0/2 | Not started | - |
 | 8. Budget Alerts & Notifications | v2.0 | 0/2 | Not started | - |
 
 ---
 *Roadmap created: 2026-01-30*
-*Last updated: 2026-01-30 after Phase 5 planning*
+*Last updated: 2026-01-31 after Phase 5 execution*

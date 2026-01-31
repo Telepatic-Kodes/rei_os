@@ -12,8 +12,8 @@ Requirements for milestone v2.0: Analytics, Automation & Alerts.
 - [ ] **AUTO-01**: Cron scheduler runs all sync scripts automatically on configurable interval
 - [ ] **AUTO-02**: Manual refresh button in dashboard header triggers sync on demand
 - [ ] **AUTO-03**: Sync status indicator shows last sync time and success/error state
-- [ ] **AUTO-04**: Sync scripts use atomic writes (temp file + rename) to prevent JSON corruption
-- [ ] **AUTO-05**: Sync scripts are idempotent (running twice produces same result)
+- [x] **AUTO-04**: Sync scripts use atomic writes (temp file + rename) to prevent JSON corruption
+- [x] **AUTO-05**: Sync scripts are idempotent (running twice produces same result)
 
 ### Analytics
 
@@ -33,9 +33,9 @@ Requirements for milestone v2.0: Analytics, Automation & Alerts.
 
 ### Infrastructure
 
-- [ ] **INFR-01**: JSONL history files with monthly rotation to prevent unbounded growth
-- [ ] **INFR-02**: TypeScript interfaces for all data shapes (history, alerts, config)
-- [ ] **INFR-03**: Auto-generated data files gitignored, seed data tracked separately
+- [x] **INFR-01**: JSONL history files with monthly rotation to prevent unbounded growth
+- [x] **INFR-02**: TypeScript interfaces for all data shapes (history, alerts, config)
+- [x] **INFR-03**: Auto-generated data files gitignored, seed data tracked separately
 
 ## Future Requirements
 
@@ -62,11 +62,11 @@ Deferred to v3.0+.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFR-01 | Phase 5 | Pending |
-| INFR-02 | Phase 5 | Pending |
-| INFR-03 | Phase 5 | Pending |
-| AUTO-04 | Phase 5 | Pending |
-| AUTO-05 | Phase 5 | Pending |
+| INFR-01 | Phase 5 | Complete |
+| INFR-02 | Phase 5 | Complete |
+| INFR-03 | Phase 5 | Complete |
+| AUTO-04 | Phase 5 | Complete |
+| AUTO-05 | Phase 5 | Complete |
 | AUTO-01 | Phase 6 | Pending |
 | AUTO-02 | Phase 6 | Pending |
 | AUTO-03 | Phase 6 | Pending |
@@ -88,4 +88,4 @@ Deferred to v3.0+.
 
 ---
 *Requirements defined: 2026-01-30*
-*Last updated: 2026-01-30 after v2.0 roadmap creation*
+*Last updated: 2026-01-31 after Phase 5 completion*
