@@ -1,23 +1,13 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
+import { atomicWriteJson } from "../app/src/lib/atomic-write";
+import { appendJsonl, cleanupOldHistory } from "../app/src/lib/jsonl";
+import { TokenDataSchema, TokenEntrySchema } from "../app/src/lib/schemas";
+import type { TokenData, TokenEntry } from "../app/src/lib/schemas";
 
 const ROOT = resolve(__dirname, "..");
 const DATA_FILE = join(ROOT, "data", "tokens.json");
-
-interface TokenEntry {
-  date: string;
-  project: string;
-  session: string;
-  tokensIn: number;
-  tokensOut: number;
-  cost: number;
-  model: string;
-}
-
-interface TokenData {
-  budget: { monthly: number; currency: string };
-  entries: TokenEntry[];
-}
+const HISTORY_DIR = join(ROOT, "data", "history");
 
 const ADMIN_KEY = process.env.ANTHROPIC_ADMIN_KEY;
 const ORG_ID = process.env.ANTHROPIC_ORG_ID;
@@ -60,14 +50,26 @@ async function main() {
     model: item.model ?? "unknown",
   }));
 
-  // Load existing data
-  const existing: TokenData = JSON.parse(readFileSync(DATA_FILE, "utf-8"));
+  // Load and validate existing data
+  const existing: TokenData = TokenDataSchema.parse(
+    JSON.parse(readFileSync(DATA_FILE, "utf-8"))
+  );
 
-  // Keep manual entries, replace auto-sync entries
+  // Keep manual entries, replace auto-sync entries (idempotent dedup)
   const manual = existing.entries.filter((e) => e.session !== "auto-sync");
   existing.entries = [...manual, ...fetched];
 
-  writeFileSync(DATA_FILE, JSON.stringify(existing, null, 2) + "\n");
+  // Atomic write to main data file
+  atomicWriteJson(DATA_FILE, existing);
+
+  // Append new entries to JSONL history
+  fetched.forEach((entry) => {
+    appendJsonl(HISTORY_DIR, "tokens", entry);
+  });
+
+  // Cleanup old history (6-month retention)
+  cleanupOldHistory(HISTORY_DIR, "tokens");
+
   console.log(`Synced ${fetched.length} token entries (kept ${manual.length} manual entries)`);
 }
 

@@ -1,18 +1,14 @@
-import { readdirSync, readFileSync, writeFileSync, statSync, existsSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
 import { join, resolve, extname } from "node:path";
+import { atomicWriteJson } from "../app/src/lib/atomic-write";
+import { appendJsonl, cleanupOldHistory } from "../app/src/lib/jsonl";
+import { QualityEntrySchema } from "../app/src/lib/schemas";
+import type { QualityEntry } from "../app/src/lib/schemas";
 
 const ROOT = resolve(__dirname, "..");
 const PROJECTS_DIR = join(ROOT, "projects");
 const DATA_FILE = join(ROOT, "data", "quality.json");
-
-interface QualityEntry {
-  project: string;
-  date: string;
-  testCoverage: { frontend: number; backend: number };
-  lighthouseScore: number;
-  openIssues: number;
-  techDebt: "none" | "low" | "medium" | "high";
-}
+const HISTORY_DIR = join(ROOT, "data", "history");
 
 function parseCoverage(projectDir: string): { frontend: number; backend: number } {
   const summaryPath = join(projectDir, "coverage", "coverage-summary.json");
@@ -129,7 +125,11 @@ function deriveTechDebt(
 const existing: QualityEntry[] = existsSync(DATA_FILE)
   ? JSON.parse(readFileSync(DATA_FILE, "utf-8"))
   : [];
-const entryMap = new Map(existing.map((e) => [e.project, e]));
+
+// Build map for deduplication (key: project+date for idempotency)
+const entryMap = new Map(
+  existing.map((e) => [`${e.project}:${e.date}`, e])
+);
 
 // Get scanned project directory names
 const dirs = readdirSync(PROJECTS_DIR).filter((d) => {
@@ -144,6 +144,7 @@ const scannedIds = new Set(dirs);
 const today = new Date().toISOString().slice(0, 10);
 
 // Process each project directory
+const newEntries: QualityEntry[] = [];
 for (const dirname of dirs) {
   const projectDir = join(PROJECTS_DIR, dirname);
   const coverage = parseCoverage(projectDir);
@@ -151,20 +152,33 @@ for (const dirname of dirs) {
   const openIssues = countTodoFixme(projectDir);
   const techDebt = deriveTechDebt(coverage, lighthouse);
 
-  entryMap.set(dirname, {
+  const entry: QualityEntry = {
     project: dirname,
     date: today,
     testCoverage: coverage,
     lighthouseScore: lighthouse,
     openIssues,
     techDebt,
-  });
+  };
+
+  const key = `${dirname}:${today}`;
+  entryMap.set(key, entry);
+  newEntries.push(entry);
 }
 
-// Build final array: scanned projects (updated) + external projects (kept)
+// Build final array: all entries (including old + new)
 const result = Array.from(entryMap.values());
 
-writeFileSync(DATA_FILE, JSON.stringify(result, null, 2) + "\n");
+// Atomic write to main data file
+atomicWriteJson(DATA_FILE, result);
+
+// Append new entries to JSONL history
+newEntries.forEach((entry) => {
+  appendJsonl(HISTORY_DIR, "quality", entry);
+});
+
+// Cleanup old history (6-month retention)
+cleanupOldHistory(HISTORY_DIR, "quality");
 
 // Print summary
 const scanned = dirs.length;

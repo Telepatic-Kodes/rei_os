@@ -1,0 +1,6 @@
+# Auto-generated data (recreated by sync scripts)
+data/history/
+
+# Keep tracked
+!data/config/
+!data/*.json

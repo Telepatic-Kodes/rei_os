@@ -1,10 +1,15 @@
 import { execFileSync } from "node:child_process";
-import { readdirSync, readFileSync, writeFileSync, statSync, existsSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
+import { atomicWriteJson } from "../app/src/lib/atomic-write";
+import { appendJsonl, cleanupOldHistory } from "../app/src/lib/jsonl";
+import { ProjectSchema } from "../app/src/lib/schemas";
+import type { Project } from "../app/src/lib/schemas";
 
 const ROOT = resolve(__dirname, "..");
 const PROJECTS_DIR = join(ROOT, "projects");
 const DATA_FILE = join(ROOT, "data", "projects.json");
+const HISTORY_DIR = join(ROOT, "data", "history");
 
 // Friendly name mapping for common npm packages
 const STACK_MAP: Record<string, string> = {
@@ -26,21 +31,6 @@ const STACK_MAP: Record<string, string> = {
   "framer-motion": "Framer Motion",
   zod: "Zod",
 };
-
-interface Project {
-  id: string;
-  name: string;
-  client: string;
-  status: string;
-  progress: number;
-  startDate: string;
-  deadline: string;
-  stack: string[];
-  lastCommit: string;
-  tasksTotal: number;
-  tasksDone: number;
-  description: string;
-}
 
 function titleCase(s: string): string {
   return s
@@ -114,6 +104,7 @@ const dirs = readdirSync(PROJECTS_DIR).filter((d) => {
 
 let updated = 0;
 let added = 0;
+const newEntries: Project[] = [];
 
 for (const dirname of dirs) {
   const projectDir = join(PROJECTS_DIR, dirname);
@@ -154,9 +145,25 @@ for (const dirname of dirs) {
     };
 
     existing.push(newProject);
+    newEntries.push(newProject);
     added++;
   }
 }
 
-writeFileSync(DATA_FILE, JSON.stringify(existing, null, 2) + "\n");
+// Deduplicate by project name (idempotency requirement)
+const deduped = Array.from(
+  new Map(existing.map((p) => [p.name, p])).values()
+);
+
+// Atomic write to main data file
+atomicWriteJson(DATA_FILE, deduped);
+
+// Append new entries to JSONL history
+newEntries.forEach((entry) => {
+  appendJsonl(HISTORY_DIR, "projects", entry);
+});
+
+// Cleanup old history (6-month retention)
+cleanupOldHistory(HISTORY_DIR, "projects");
+
 console.log(`Updated ${updated} projects, added ${added} new projects`);
