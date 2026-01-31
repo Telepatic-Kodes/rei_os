@@ -87,11 +87,11 @@ Plans:
   3. Desktop notifications (via node-notifier) fire from the cron process when thresholds are breached, even if the browser is closed
   4. Browser Notification API alerts appear when the dashboard tab is open and a threshold is crossed
   5. Alert thresholds and per-project limits are editable in a single config file without code changes
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 08-01: Alert config, threshold evaluation, and dashboard banner
-- [ ] 08-02: Desktop and browser notifications
+- [ ] 08-01-PLAN.md — Alert config, threshold evaluation, dashboard banners, settings page
+- [ ] 08-02-PLAN.md — Desktop notifications (node-notifier) and browser Notification API
 
 ## Progress
 
