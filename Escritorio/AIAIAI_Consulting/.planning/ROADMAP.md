@@ -71,11 +71,11 @@ Plans:
   1. Each project page shows a line chart of token spend over the past 7 and 30 days
   2. A cost-per-model view breaks down spending between opus and sonnet (and any other models)
   3. A burn rate indicator shows the projected date when the monthly $200 budget will be exhausted
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 07-01: Recharts integration and per-project spend chart
-- [ ] 07-02: Cost-per-model breakdown and burn rate projection
+- [ ] 07-01-PLAN.md — Recharts integration, data helpers, spend trend chart, analytics page
+- [ ] 07-02-PLAN.md — Cost-per-model breakdown chart and burn rate projection card
 
 ### Phase 8: Budget Alerts & Notifications
 **Goal**: Users are proactively warned before budget overruns through multiple notification channels
