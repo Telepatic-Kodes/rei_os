@@ -6,10 +6,11 @@ import { toast } from 'sonner';
 
 interface AgentLauncherProps {
   agents: Agent[];
+  availableProjects: string[]; // List of existing projects
   onExecutionStarted?: () => void;
 }
 
-export function AgentLauncher({ agents, onExecutionStarted }: AgentLauncherProps) {
+export function AgentLauncher({ agents, availableProjects, onExecutionStarted }: AgentLauncherProps) {
   const [selectedAgentId, setSelectedAgentId] = useState<string>('');
   const [taskType, setTaskType] = useState<TaskType | ''>('');
   const [input, setInput] = useState<Record<string, string>>({});
@@ -153,15 +154,30 @@ export function AgentLauncher({ agents, onExecutionStarted }: AgentLauncherProps
               <label className="block text-purple-400 text-sm mb-2 tracking-wide">
                 PROJECT (Optional)
               </label>
-              <input
-                type="text"
-                placeholder="e.g., inmobiliariapp, amd, guitarrap..."
+              <select
                 value={project}
                 onChange={(e) => setProject(e.target.value)}
-                className="w-full bg-black border-2 border-purple-400 text-white p-3 placeholder-gray-600 focus:outline-none focus:border-purple-300 transition-colors"
-              />
+                className="w-full bg-black border-2 border-purple-400 text-purple-400 p-3 uppercase tracking-wide focus:outline-none focus:border-purple-300 transition-colors"
+              >
+                <option value="">-- NO PROJECT --</option>
+                {availableProjects.map(proj => (
+                  <option key={proj} value={proj}>
+                    {proj.toUpperCase()}
+                  </option>
+                ))}
+                <option value="__new__">+ CREATE NEW PROJECT</option>
+              </select>
+              {project === '__new__' && (
+                <input
+                  type="text"
+                  placeholder="Enter new project name..."
+                  autoFocus
+                  onChange={(e) => setProject(e.target.value.toLowerCase().replace(/\s+/g, '-'))}
+                  className="w-full bg-black border-2 border-purple-400 text-white p-3 mt-2 placeholder-gray-600 focus:outline-none focus:border-purple-300 transition-colors"
+                />
+              )}
               <div className="text-xs text-gray-500 mt-1">
-                Tag this execution with a project name for filtering
+                Tag this execution with a project for filtering
               </div>
             </div>
           </>

@@ -63,6 +63,7 @@ export default function CommandCenterPage() {
 
   const activeCount = executions.filter(e => e.status === 'running').length;
   const onlineAgents = agents.filter(a => a.status === 'online').length;
+  const availableProjects = Array.from(new Set(executions.map(e => e.project).filter(Boolean))) as string[];
 
   if (loading) {
     return (
@@ -106,6 +107,7 @@ export default function CommandCenterPage() {
         <div className="col-span-4 space-y-6">
           <AgentLauncher
             agents={agents}
+            availableProjects={availableProjects}
             onExecutionStarted={loadExecutions}
           />
 
