@@ -3,7 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 Operational Dashboard** — Phases 1-4 (shipped 2026-01-30)
-- ✅ **v2.0 Analytics, Automation & Alerts** — Phases 5-8 (shipped 2026-01-31)
+- ✅ **v2.0 Analytics, Automation & Alerts** — Phases 5-8 (shipped 2026-02-01)
 
 ## Phases
 
@@ -20,7 +20,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
 </details>
 
 <details>
-<summary>✅ v2.0 Analytics, Automation & Alerts (Phases 5-8) — SHIPPED 2026-01-31</summary>
+<summary>✅ v2.0 Analytics, Automation & Alerts (Phases 5-8) — SHIPPED 2026-02-01</summary>
 
 - [x] Phase 5: Data Infrastructure & Safety — Zod schemas, atomic writes, JSONL history
 - [x] Phase 6: Automated Sync — Cron scheduler, manual refresh, analytics generation

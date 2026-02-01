@@ -35,7 +35,7 @@ One place to see the status, cost, and health of every project — so nothing fa
 
 ### Active
 
-- [ ] Project velocity tracking (tasks completed over time)
+(None — v3.0 planning needed)
 
 ### Deferred (v3.0+)
 
@@ -58,10 +58,10 @@ One place to see the status, cost, and health of every project — so nothing fa
 - 14 projects span: real estate (rei-os, inmobiliariapp), media (remotion-system, my-remotion-video), AI tools (claude-workspace, topic-intelligence), pricing (pricing-radar), music (guitarrap), personal (personal-os, sueno-andino), advertising (money-ads)
 - Mix of active development, paused, and completed projects
 - Token budget: $200/month across all projects
-- Stack: Next.js 16, React 19, TypeScript, Tailwind v4, shadcn/ui
-- v1.0 shipped: 1,792 LOC TypeScript, 26 commits, 4 phases
-- v2.0 shipped: 3,972 LOC TypeScript (cumulative), 41 commits, 4 phases (5-8)
-- Additional stack: Zod, croner, Recharts 3.7.0, node-notifier, sonner
+- Stack: Next.js 16, React 19, TypeScript, Tailwind v4, shadcn/ui, Zod, croner, Recharts 3.7.0, node-notifier, sonner
+- v1.0 shipped: 1,792 LOC TypeScript, 26 commits, 4 phases (2026-01-30)
+- v2.0 shipped: 8,650 LOC TypeScript (cumulative), 39 commits, 4 phases (2026-02-01)
+- Total development time: 4 days (2026-01-29 → 2026-02-01)
 
 ## Constraints
 
@@ -91,6 +91,7 @@ One place to see the status, cost, and health of every project — so nothing fa
 | Recharts 3.7.0 | React 19 compatible, maintained, good TypeScript support | ✓ Good |
 | Fire-once alert pattern | Prevents notification spam, tracks per month | ✓ Good |
 | Two alert functions (evaluate vs getActive) | Separate state mutation from read-only queries | ✓ Good |
+| Path resolution with ".." escape | Next.js cwd=/app but data at root, need `path.join(process.cwd(), "..", "data")` | ✓ Good |
 
 ## Milestones Shipped
 
@@ -100,4 +101,4 @@ One place to see the status, cost, and health of every project — so nothing fa
 See `.planning/MILESTONES.md` for full details.
 
 ---
-*Last updated: 2026-01-31 after v2.0 milestone completion*
+*Last updated: 2026-02-01 after v2.0 milestone completion and archival*
