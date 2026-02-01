@@ -110,10 +110,10 @@ class MonetizationAnalyzer:
 
         # Intent bonus
         intent_weights = {
-            'seeking_solution': 4.0,
-            'budget_discussion': 5.0,
-            'pain_point': 3.0,
-            'market_intel': 2.0,
+            'seeking_solution': 2.0,
+            'budget_discussion': 2.5,
+            'pain_point': 1.5,
+            'market_intel': 1.0,
             'general': 0.0
         }
         score += intent_weights.get(intent, 0)

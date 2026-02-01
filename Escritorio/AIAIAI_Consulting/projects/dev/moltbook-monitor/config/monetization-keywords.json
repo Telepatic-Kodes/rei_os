@@ -5,7 +5,7 @@
       "pricing", "enterprise", "B2B SaaS", "valuation", "exit",
       "seed round", "series A", "venture capital", "budget approved"
     ],
-    "weight": 3.0
+    "weight": 2.0
   },
   "opportunity": {
     "keywords": [
@@ -13,7 +13,7 @@
       "acquisition", "budget", "RFP", "proposal", "vendor",
       "solution", "software", "platform", "service"
     ],
-    "weight": 2.0
+    "weight": 1.5
   },
   "market_intel": {
     "keywords": [
@@ -21,7 +21,7 @@
       "conversion", "pricing strategy", "go-to-market",
       "GTM", "total addressable market", "TAM"
     ],
-    "weight": 1.5
+    "weight": 1.0
   },
   "pain_points": {
     "keywords": [
@@ -29,7 +29,7 @@
       "frustrated", "alternative to", "better than",
       "replacing", "migrating from", "problem with"
     ],
-    "weight": 2.5
+    "weight": 1.5
   },
   "intent_patterns": {
     "seeking_solution": [
@@ -37,16 +37,16 @@
       "recommendations for", "best tool for", "which platform"
     ],
     "budget_discussion": [
-      "budget", "approved", "funding", "allocated", "$",
-      "investment", "spend", "cost", "price"
+      "budget approved", "budget allocated", "funding allocated",
+      "investment approved", "spend", "cost approved"
     ],
     "pain_point": [
       "frustrated", "broken", "slow", "expensive", "problem",
       "issue", "struggle", "difficult", "alternative"
     ],
     "market_intel": [
-      "market", "competitor", "industry", "trend", "analysis",
-      "research", "report", "forecast", "growth"
+      "market size", "market", "competitor", "industry", "trend", "analysis",
+      "research", "report", "forecast", "growth", "$B", "$M", "billion", "million"
     ]
   },
   "agent_roles": {

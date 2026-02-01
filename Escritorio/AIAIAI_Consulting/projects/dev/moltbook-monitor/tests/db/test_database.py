@@ -9,11 +9,11 @@ async def test_database_initialization():
     db = await get_database("sqlite+aiosqlite:///:memory:")
 
     # Verify tables exist
-    async with db.engine.begin() as conn:
-        result = await conn.execute(
-            "SELECT name FROM sqlite_master WHERE type='table'"
-        )
-        tables = [row[0] for row in result]
+    cursor = await db.conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table'"
+    )
+    rows = await cursor.fetchall()
+    tables = [row[0] for row in rows]
 
     assert 'posts' in tables
     assert 'watchlist_agents' in tables
