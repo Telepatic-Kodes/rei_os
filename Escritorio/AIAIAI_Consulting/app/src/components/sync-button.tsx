@@ -14,7 +14,7 @@ export function SyncButton() {
 
   const handleSync = async () => {
     setSyncing(true);
-    toast("Syncing data...");
+    toast.loading("Syncing tokens, quality, and projects...", { id: "sync" });
 
     try {
       const response = await fetch("/api/sync", {
@@ -24,17 +24,19 @@ export function SyncButton() {
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        toast.error(data.error || "Sync failed");
+        toast.error(data.error || "Sync failed", { id: "sync" });
+        setSyncing(false);
         return;
       }
 
-      toast.success("Sync complete");
-      // Reload page to show fresh data
-      window.location.reload();
+      const duration = data.durationMs ? ` (${(data.durationMs / 1000).toFixed(1)}s)` : "";
+      toast.success(`Sync complete${duration}`, { id: "sync" });
+
+      // Delay reload to show success message
+      setTimeout(() => window.location.reload(), 800);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      toast.error(`Sync failed: ${message}`);
-    } finally {
+      toast.error(`Network error: ${message}`, { id: "sync" });
       setSyncing(false);
     }
   };

@@ -3,18 +3,24 @@
 import { useProject } from "@/contexts/project-context";
 import { useState, useEffect, useRef } from "react";
 import type { Project } from "@/lib/schemas";
+import { toast } from "sonner";
 
 export function ProjectSelector() {
   const { currentProject, setCurrentProject } = useProject();
   const [projects, setProjects] = useState<Project[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentProjectName, setCurrentProjectName] = useState("Todos los Proyectos");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Load projects
   useEffect(() => {
+    setIsLoading(true);
     fetch("/data/projects.json")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load projects");
+        return res.json();
+      })
       .then((data: Project[]) => {
         setProjects(data);
 
@@ -26,7 +32,11 @@ export function ProjectSelector() {
           setCurrentProjectName(project?.name || currentProject);
         }
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Projects error:", err);
+        toast.error("Failed to load project list");
+      })
+      .finally(() => setIsLoading(false));
   }, [currentProject]);
 
   // Close dropdown when clicking outside
@@ -60,13 +70,24 @@ export function ProjectSelector() {
         className="flex items-center gap-2 px-4 py-2 bg-background border border-border rounded-md hover:bg-accent transition-colors text-sm"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
+        disabled={isLoading}
       >
         <span className="font-mono text-muted-foreground">#</span>
-        <span>{currentProjectName}</span>
+        <span>{isLoading ? "Loading..." : currentProjectName}</span>
         <span className="ml-2 text-muted-foreground">{isOpen ? "▲" : "▼"}</span>
       </button>
 
-      {isOpen && (
+      {isOpen && isLoading && (
+        <div className="absolute right-0 mt-2 w-72 bg-popover border border-border rounded-md shadow-lg z-50 p-4">
+          <div className="space-y-2">
+            <div className="h-8 bg-gray-800 animate-pulse rounded" />
+            <div className="h-8 bg-gray-800 animate-pulse rounded" />
+            <div className="h-8 bg-gray-800 animate-pulse rounded" />
+          </div>
+        </div>
+      )}
+
+      {isOpen && !isLoading && (
         <div className="absolute right-0 mt-2 w-72 bg-popover border border-border rounded-md shadow-lg z-50 max-h-96 overflow-y-auto">
           {/* All Projects Option */}
           <button

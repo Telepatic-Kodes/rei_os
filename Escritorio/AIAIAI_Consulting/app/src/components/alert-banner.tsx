@@ -64,7 +64,11 @@ export function AlertBanner() {
           }
         }
       })
-      .catch(() => {});
+      .catch((err) => {
+        // Silent fail for polling - no toast spam
+        // But log for debugging
+        console.error("Alert fetch error:", err);
+      });
   }
 
   useEffect(() => {
@@ -90,7 +94,9 @@ export function AlertBanner() {
         <Alert
           key={alert.alertKey}
           variant={alert.level === "critical" ? "destructive" : "default"}
-          className="relative pr-10"
+          className={`relative pr-10 ${
+            alert.level === "critical" ? "animate-border-pulse" : ""
+          }`}
         >
           <AlertTriangle className="h-4 w-4" />
           <AlertTitle>

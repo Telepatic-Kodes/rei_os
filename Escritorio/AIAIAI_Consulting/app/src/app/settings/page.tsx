@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { BrutalistPanel } from "@/components/ui/brutalist-panel";
+import { BrutalistButton } from "@/components/ui/brutalist-button";
+import { validateForm, budgetSchema } from "@/lib/form-validation";
 
 interface AlertConfig {
   globalBudget: number;
@@ -15,6 +16,8 @@ export default function SettingsPage() {
   const [config, setConfig] = useState<AlertConfig | null>(null);
   const [saving, setSaving] = useState(false);
   const [notifPermission, setNotifPermission] = useState<string>("default");
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
   useEffect(() => {
     fetch("/api/settings/alerts")
@@ -26,8 +29,32 @@ export default function SettingsPage() {
     }
   }, []);
 
+  // Warn before leaving with unsaved changes
+  useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => {
+      if (hasUnsavedChanges) {
+        e.preventDefault();
+        return "";
+      }
+    };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [hasUnsavedChanges]);
+
   async function handleSave() {
     if (!config) return;
+
+    // Validate before saving
+    const validation = validateForm(budgetSchema, config);
+    if (!validation.success) {
+      setValidationErrors(validation.errors);
+      toast.error("Validation failed", {
+        description: "Please fix errors before saving",
+      });
+      return;
+    }
+
+    setValidationErrors([]);
     setSaving(true);
     try {
       const res = await fetch("/api/settings/alerts", {
@@ -40,6 +67,7 @@ export default function SettingsPage() {
         throw new Error(err.error ?? "Save failed");
       }
       toast.success("Alert settings saved");
+      setHasUnsavedChanges(false);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Save failed");
     } finally {
@@ -53,6 +81,7 @@ export default function SettingsPage() {
       ...config,
       globalThresholds: [...config.globalThresholds, { percent: 50 }],
     });
+    setHasUnsavedChanges(true);
   }
 
   function removeThreshold(index: number) {
@@ -61,6 +90,7 @@ export default function SettingsPage() {
       ...config,
       globalThresholds: config.globalThresholds.filter((_, i) => i !== index),
     });
+    setHasUnsavedChanges(true);
   }
 
   function updateThreshold(index: number, percent: number, label: string) {
@@ -68,6 +98,7 @@ export default function SettingsPage() {
     const thresholds = [...config.globalThresholds];
     thresholds[index] = { percent, label: label || undefined };
     setConfig({ ...config, globalThresholds: thresholds });
+    setHasUnsavedChanges(true);
   }
 
   function addProjectLimit() {
@@ -76,6 +107,7 @@ export default function SettingsPage() {
       ...config,
       perProjectLimits: { ...config.perProjectLimits, "": 50 },
     });
+    setHasUnsavedChanges(true);
   }
 
   function removeProjectLimit(name: string) {
@@ -83,6 +115,7 @@ export default function SettingsPage() {
     const limits = { ...config.perProjectLimits };
     delete limits[name];
     setConfig({ ...config, perProjectLimits: limits });
+    setHasUnsavedChanges(true);
   }
 
   function updateProjectLimit(oldName: string, newName: string, limit: number) {
@@ -91,6 +124,7 @@ export default function SettingsPage() {
     if (oldName !== newName) delete limits[oldName];
     limits[newName] = limit;
     setConfig({ ...config, perProjectLimits: limits });
+    setHasUnsavedChanges(true);
   }
 
   async function requestNotifPermission() {
@@ -101,39 +135,54 @@ export default function SettingsPage() {
 
   if (!config) {
     return (
-      <div className="max-w-2xl mx-auto py-8">
-        <p className="text-muted-foreground">Loading settings...</p>
-      </div>
+      <main className="max-w-[1400px] mx-auto space-y-6">
+        <div className="text-center py-12 text-gray-500 uppercase tracking-wider text-sm">
+          Loading settings...
+        </div>
+      </main>
     );
   }
 
   const projectEntries = Object.entries(config.perProjectLimits);
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold">Settings</h1>
+    <main className="max-w-[1400px] mx-auto space-y-6">
+      {/* Page Title */}
+      <h1 className="text-3xl font-bold text-purple-400 tracking-wider font-[family-name:var(--font-space)] uppercase">
+        ▐ SETTINGS ▌
+      </h1>
 
-      <Card className="p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Global Budget</h2>
-        <div className="flex items-center gap-2">
-          <label className="text-sm text-muted-foreground">Monthly budget ($)</label>
-          <input
-            type="number"
-            min={1}
-            value={config.globalBudget}
-            onChange={(e) =>
-              setConfig({ ...config, globalBudget: Number(e.target.value) })
-            }
-            className="flex h-9 w-32 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-          />
+      {/* Global Budget */}
+      <BrutalistPanel title="Global Budget Configuration" borderColor="green">
+        <div className="space-y-4 mt-4">
+          <div className="flex items-center gap-4">
+            <label className="text-sm text-gray-400 uppercase tracking-wide font-[family-name:var(--font-jetbrains)] w-48">
+              Monthly Budget ($):
+            </label>
+            <input
+              type="number"
+              min={1}
+              value={config.globalBudget}
+              onChange={(e) => {
+                setConfig({ ...config, globalBudget: Number(e.target.value) });
+                setHasUnsavedChanges(true);
+              }}
+              className="
+                flex h-10 w-32 border-2 border-cyan-400 bg-black px-3 py-2
+                text-sm font-mono text-white
+                focus:outline-none focus:border-green-400
+                transition-colors
+              "
+            />
+          </div>
         </div>
+      </BrutalistPanel>
 
-        <Separator />
-
-        <h2 className="text-lg font-semibold">Alert Thresholds</h2>
-        <div className="space-y-2">
+      {/* Alert Thresholds */}
+      <BrutalistPanel title="Alert Thresholds" borderColor="yellow">
+        <div className="space-y-3 mt-4">
           {config.globalThresholds.map((t, i) => (
-            <div key={i} className="flex items-center gap-2">
+            <div key={i} className="flex items-center gap-3 p-3 bg-zinc-950 border-l-2 border-yellow-400">
               <input
                 type="number"
                 min={0}
@@ -142,48 +191,64 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   updateThreshold(i, Number(e.target.value), t.label ?? "")
                 }
-                className="flex h-9 w-20 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                className="
+                  flex h-9 w-20 border-2 border-gray-700 bg-black px-3 py-1
+                  text-sm font-mono text-yellow-400
+                  focus:outline-none focus:border-yellow-400
+                "
               />
-              <span className="text-sm text-muted-foreground">%</span>
+              <span className="text-sm text-gray-500 font-mono">%</span>
               <input
                 type="text"
-                placeholder="Label"
+                placeholder="LABEL"
                 value={t.label ?? ""}
                 onChange={(e) =>
                   updateThreshold(i, t.percent, e.target.value)
                 }
-                className="flex h-9 w-32 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                className="
+                  flex h-9 flex-1 border-2 border-gray-700 bg-black px-3 py-1
+                  text-sm font-mono text-white uppercase
+                  placeholder:text-gray-600
+                  focus:outline-none focus:border-yellow-400
+                "
               />
-              <button
+              <BrutalistButton
+                variant="danger"
+                size="sm"
                 onClick={() => removeThreshold(i)}
-                className="text-sm text-destructive hover:underline"
               >
                 Remove
-              </button>
+              </BrutalistButton>
             </div>
           ))}
-          <button
+          <BrutalistButton
+            variant="secondary"
+            size="sm"
             onClick={addThreshold}
-            className="text-sm text-primary hover:underline"
           >
-            + Add threshold
-          </button>
+            + Add Threshold
+          </BrutalistButton>
         </div>
+      </BrutalistPanel>
 
-        <Separator />
-
-        <h2 className="text-lg font-semibold">Per-Project Limits</h2>
-        <div className="space-y-2">
+      {/* Per-Project Limits */}
+      <BrutalistPanel title="Per-Project Budget Limits" borderColor="purple">
+        <div className="space-y-3 mt-4">
           {projectEntries.map(([name, limit]) => (
-            <div key={name} className="flex items-center gap-2">
+            <div key={name} className="flex items-center gap-3 p-3 bg-zinc-950 border-l-2 border-purple-400">
               <input
                 type="text"
-                placeholder="Project name"
+                placeholder="PROJECT NAME"
                 value={name}
                 onChange={(e) => updateProjectLimit(name, e.target.value, limit)}
-                className="flex h-9 w-40 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                className="
+                  flex h-9 w-60 border-2 border-gray-700 bg-black px-3 py-1
+                  text-sm font-mono text-white uppercase
+                  placeholder:text-gray-600
+                  focus:outline-none focus:border-purple-400
+                "
               />
-              <span className="text-sm text-muted-foreground">$</span>
+              <span className="text-sm text-gray-500 font-mono">$</span>
               <input
                 type="number"
                 min={0}
@@ -191,59 +256,96 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   updateProjectLimit(name, name, Number(e.target.value))
                 }
-                className="flex h-9 w-24 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                className="
+                  flex h-9 w-32 border-2 border-gray-700 bg-black px-3 py-1
+                  text-sm font-mono text-green-400
+                  focus:outline-none focus:border-purple-400
+                "
               />
-              <button
+              <BrutalistButton
+                variant="danger"
+                size="sm"
                 onClick={() => removeProjectLimit(name)}
-                className="text-sm text-destructive hover:underline"
               >
                 Remove
-              </button>
+              </BrutalistButton>
             </div>
           ))}
-          <button
+          <BrutalistButton
+            variant="secondary"
+            size="sm"
             onClick={addProjectLimit}
-            className="text-sm text-primary hover:underline"
           >
-            + Add project limit
-          </button>
+            + Add Project Limit
+          </BrutalistButton>
         </div>
+      </BrutalistPanel>
 
-        <Separator />
+      {/* Browser Notifications */}
+      <BrutalistPanel title="Browser Notifications" borderColor="cyan">
+        <div className="mt-4 space-y-4">
+          {notifPermission === "granted" ? (
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+              <p className="text-sm text-green-400 font-mono uppercase tracking-wide">
+                Notifications Enabled
+              </p>
+            </div>
+          ) : notifPermission === "denied" ? (
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-red-400 rounded-full" />
+              <p className="text-sm text-red-400 font-mono uppercase tracking-wide">
+                Notifications Blocked - Enable in Browser Settings
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-gray-600 rounded-full" />
+                <p className="text-sm text-gray-400 font-mono uppercase tracking-wide">
+                  Permission: Not Requested
+                </p>
+              </div>
+              <BrutalistButton
+                variant="primary"
+                onClick={requestNotifPermission}
+              >
+                Enable Notifications
+              </BrutalistButton>
+            </div>
+          )}
+        </div>
+      </BrutalistPanel>
 
-        <button
+      {/* Validation Errors */}
+      {validationErrors.length > 0 && (
+        <BrutalistPanel title="Validation Errors" borderColor="red">
+          <div className="mt-4 space-y-2">
+            {validationErrors.map((error, i) => (
+              <div key={i} className="text-sm text-red-400 font-mono flex items-start gap-2">
+                <span className="text-red-500">×</span>
+                <span>{error}</span>
+              </div>
+            ))}
+          </div>
+        </BrutalistPanel>
+      )}
+
+      {/* Save Button */}
+      <div className="flex justify-end gap-4 items-center">
+        {hasUnsavedChanges && (
+          <p className="text-sm text-yellow-400 uppercase tracking-wider font-mono">
+            ⚠ Unsaved Changes
+          </p>
+        )}
+        <BrutalistButton
+          variant="primary"
           onClick={handleSave}
           disabled={saving}
-          className="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 disabled:opacity-50"
         >
-          {saving ? "Saving..." : "Save Settings"}
-        </button>
-      </Card>
-
-      <Card className="p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Browser Notifications</h2>
-        {notifPermission === "granted" ? (
-          <p className="text-sm text-green-600 font-medium">
-            Browser notifications enabled
-          </p>
-        ) : notifPermission === "denied" ? (
-          <p className="text-sm text-destructive">
-            Notifications blocked. Enable in browser settings.
-          </p>
-        ) : (
-          <>
-            <p className="text-sm text-muted-foreground">
-              Permission status: <span className="font-medium">Not requested</span>
-            </p>
-            <button
-              onClick={requestNotifPermission}
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90"
-            >
-              Enable Browser Notifications
-            </button>
-          </>
-        )}
-      </Card>
-    </div>
+          {saving ? "Saving..." : "Save All Settings"}
+        </BrutalistButton>
+      </div>
+    </main>
   );
 }

@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/sidebar";
-import { Toaster } from "@/components/ui/sonner";
+import { ClientLayout } from "@/components/client-layout";
+import { BrutalistToaster } from "@/components/brutalist-toaster";
 import { DashboardHeader } from "@/components/dashboard-header";
 import { AlertBanner } from "@/components/alert-banner";
 import { ProjectProvider } from "@/contexts/project-context";
 import { Suspense } from "react";
+import { CommandPalette } from "@/components/command-palette";
+import { QuickActions } from "@/components/quick-actions";
+import { KeyboardShortcutsProvider } from "@/components/keyboard-shortcuts-provider";
+import { KeyboardShortcutsHelp } from "@/components/keyboard-shortcuts-help";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,19 +37,22 @@ export default function RootLayout({
   return (
     <html lang="es" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased font-[family-name:var(--font-jetbrains)]`}
       >
         <Suspense fallback={<div>Loading...</div>}>
           <ProjectProvider>
-            <div className="flex h-screen">
-              <Sidebar />
-              <main className="flex-1 overflow-y-auto p-8">
-                <AlertBanner />
-                <DashboardHeader />
+            <KeyboardShortcutsProvider>
+              <ClientLayout
+                alertBanner={<AlertBanner />}
+                header={<DashboardHeader />}
+              >
                 {children}
-              </main>
-            </div>
-            <Toaster />
+              </ClientLayout>
+              <BrutalistToaster />
+              <CommandPalette />
+              <QuickActions />
+              <KeyboardShortcutsHelp />
+            </KeyboardShortcutsProvider>
           </ProjectProvider>
         </Suspense>
       </body>
