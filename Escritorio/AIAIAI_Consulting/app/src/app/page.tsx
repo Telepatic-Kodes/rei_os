@@ -11,12 +11,12 @@ import {
   calculateTokenTotals,
 } from "@/lib/data-filters";
 
-export default function Home({
+export default async function Home({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const projectId = getProjectFromUrl(searchParams);
+  const projectId = await getProjectFromUrl(searchParams);
 
   // Load all data
   const allProjects = getProjects();

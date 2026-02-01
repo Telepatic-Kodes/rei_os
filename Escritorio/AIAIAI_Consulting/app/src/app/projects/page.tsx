@@ -3,12 +3,12 @@ import { ProjectCard } from "@/components/project-card";
 import { getProjectFromUrl } from "@/lib/project-url";
 import { filterProjects } from "@/lib/data-filters";
 
-export default function ProjectsPage({
+export default async function ProjectsPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const projectId = getProjectFromUrl(searchParams);
+  const projectId = await getProjectFromUrl(searchParams);
   const allProjects = getProjects();
   const projects = filterProjects(allProjects, projectId);
 

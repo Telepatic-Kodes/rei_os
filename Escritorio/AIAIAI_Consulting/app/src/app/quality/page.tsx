@@ -4,12 +4,12 @@ import { QualityCard } from "@/components/quality-badge";
 import { getProjectFromUrl } from "@/lib/project-url";
 import { filterQualityEntries } from "@/lib/data-filters";
 
-export default function QualityPage({
+export default async function QualityPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const projectId = getProjectFromUrl(searchParams);
+  const projectId = await getProjectFromUrl(searchParams);
   const allQuality = getQuality();
   const projects = getProjects();
 

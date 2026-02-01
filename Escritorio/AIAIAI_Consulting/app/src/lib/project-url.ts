@@ -6,13 +6,14 @@
 
 /**
  * Extract project ID from URL search params (server-side)
- * @param searchParams - Next.js searchParams from page props
+ * @param searchParams - Next.js searchParams from page props (Promise in Next.js 15+)
  * @returns Project ID or "all" as default
  */
-export function getProjectFromUrl(
-  searchParams: { [key: string]: string | string[] | undefined }
-): string {
-  const project = searchParams.project;
+export async function getProjectFromUrl(
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+): Promise<string> {
+  const params = await searchParams;
+  const project = params.project;
 
   if (typeof project === "string" && project.length > 0) {
     return project;

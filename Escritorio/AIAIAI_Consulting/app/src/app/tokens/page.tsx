@@ -6,12 +6,12 @@ import { Badge } from "@/components/ui/badge";
 import { getProjectFromUrl } from "@/lib/project-url";
 import { filterTokenEntries, calculateTokenTotals } from "@/lib/data-filters";
 
-export default function TokensPage({
+export default async function TokensPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const projectId = getProjectFromUrl(searchParams);
+  const projectId = await getProjectFromUrl(searchParams);
   const tokenData = getTokenData();
   const projects = getProjects();
 
