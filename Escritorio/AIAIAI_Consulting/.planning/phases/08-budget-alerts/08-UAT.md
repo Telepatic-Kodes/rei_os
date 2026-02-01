@@ -1,9 +1,9 @@
 ---
-status: complete
+status: diagnosed
 phase: 08-budget-alerts
 source: [08-01-SUMMARY.md, 08-02-SUMMARY.md]
 started: 2026-02-01T00:00:00Z
-updated: 2026-02-01T04:45:00Z
+updated: 2026-02-01T05:00:00Z
 ---
 
 ## Current Test
@@ -75,5 +75,13 @@ skipped: 6
   reason: "User reported: POST /api/settings/alerts returns 500 error. Browser shows 'Failed to save alert config' toast. Cannot save any settings changes. The route exists, file path is correct, but atomicWriteJson or validation is failing."
   severity: blocker
   test: 10
-  artifacts: []
-  missing: []
+  root_cause: "Path resolution bug - alert-config.ts and alert-evaluator.ts missing '..' in process.cwd() paths. Next.js cwd is /app but data is at project root /data. Paths resolve to /app/data/... (doesn't exist) instead of /data/..."
+  artifacts:
+    - path: "app/src/lib/alert-config.ts"
+      issue: "CONFIG_PATH missing '..' (line 7)"
+    - path: "app/src/lib/alert-evaluator.ts"
+      issue: "ANALYTICS_PATH, TOKENS_PATH, STATE_PATH all missing '..' (lines 7-9)"
+  missing:
+    - "Add '..' to path.join() calls to navigate from /app to project root"
+    - "Align with pattern used in data.ts, sync-manager.ts, data-helpers.ts"
+  debug_session: ".planning/debug/settings-persistence-500-error.md"

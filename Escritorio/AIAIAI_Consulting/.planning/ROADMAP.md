@@ -42,8 +42,8 @@ See: `.planning/milestones/v2.0-ROADMAP.md` for full details.
 | 5. Data Infrastructure & Safety | v2.0 | 2/2 | Complete | 2026-01-31 |
 | 6. Automated Sync | v2.0 | 3/3 | Complete | 2026-01-31 |
 | 7. Analytics & Charts | v2.0 | 2/2 | Complete | 2026-01-31 |
-| 8. Budget Alerts & Notifications | v2.0 | 2/2 | Complete | 2026-01-31 |
+| 8. Budget Alerts & Notifications | v2.0 | 3/3 | Complete | 2026-02-01 |
 
 ---
 *Roadmap created: 2026-01-30*
-*Last updated: 2026-01-31 after v2.0 milestone completion*
+*Last updated: 2026-02-01 after Phase 8 gap closure*
