@@ -9,9 +9,9 @@ import type { AlertResult, AlertState } from "./schemas";
 import { loadAlertConfig } from "./alert-config";
 import { atomicWriteJson } from "./atomic-write";
 
-const ANALYTICS_PATH = path.join(process.cwd(), "data", "analytics.json");
-const TOKENS_PATH = path.join(process.cwd(), "data", "tokens.json");
-const STATE_PATH = path.join(process.cwd(), "data", "alert-state.json");
+const ANALYTICS_PATH = path.join(process.cwd(), "..", "data", "analytics.json");
+const TOKENS_PATH = path.join(process.cwd(), "..", "data", "tokens.json");
+const STATE_PATH = path.join(process.cwd(), "..", "data", "alert-state.json");
 
 function currentMonth(): string {
   return new Date().toISOString().slice(0, 7); // YYYY-MM

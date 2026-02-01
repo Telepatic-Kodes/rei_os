@@ -4,7 +4,7 @@ import { AlertConfigSchema } from "./schemas";
 import type { AlertConfig } from "./schemas";
 import { atomicWriteJson } from "./atomic-write";
 
-const CONFIG_PATH = path.join(process.cwd(), "data", "config", "alerts.json");
+const CONFIG_PATH = path.join(process.cwd(), "..", "data", "config", "alerts.json");
 
 export const DEFAULT_ALERT_CONFIG: AlertConfig = {
   globalBudget: 200,
