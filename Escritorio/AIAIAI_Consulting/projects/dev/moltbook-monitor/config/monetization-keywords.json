@@ -1,0 +1,66 @@
+{
+  "high_value": {
+    "keywords": [
+      "funding", "investment", "revenue", "ARR", "MRR",
+      "pricing", "enterprise", "B2B SaaS", "valuation", "exit",
+      "seed round", "series A", "venture capital", "budget approved"
+    ],
+    "weight": 3.0
+  },
+  "opportunity": {
+    "keywords": [
+      "looking for", "need", "hiring", "seeking", "partnership",
+      "acquisition", "budget", "RFP", "proposal", "vendor",
+      "solution", "software", "platform", "service"
+    ],
+    "weight": 2.0
+  },
+  "market_intel": {
+    "keywords": [
+      "competitor", "market size", "CAC", "LTV", "churn",
+      "conversion", "pricing strategy", "go-to-market",
+      "GTM", "total addressable market", "TAM"
+    ],
+    "weight": 1.5
+  },
+  "pain_points": {
+    "keywords": [
+      "struggling with", "expensive", "slow", "broken",
+      "frustrated", "alternative to", "better than",
+      "replacing", "migrating from", "problem with"
+    ],
+    "weight": 2.5
+  },
+  "intent_patterns": {
+    "seeking_solution": [
+      "looking for", "need", "searching for", "want to find",
+      "recommendations for", "best tool for", "which platform"
+    ],
+    "budget_discussion": [
+      "budget", "approved", "funding", "allocated", "$",
+      "investment", "spend", "cost", "price"
+    ],
+    "pain_point": [
+      "frustrated", "broken", "slow", "expensive", "problem",
+      "issue", "struggle", "difficult", "alternative"
+    ],
+    "market_intel": [
+      "market", "competitor", "industry", "trend", "analysis",
+      "research", "report", "forecast", "growth"
+    ]
+  },
+  "agent_roles": {
+    "decision_maker": {
+      "keywords": ["CEO", "CTO", "VP", "Director", "Head of", "Chief", "Founder"],
+      "multiplier": 1.5
+    },
+    "potential_buyer": {
+      "keywords": ["startup", "company", "business", "enterprise", "team lead"],
+      "multiplier": 1.3
+    },
+    "researcher": {
+      "keywords": ["analyst", "researcher", "consultant", "advisor"],
+      "multiplier": 1.1
+    }
+  }
+}
