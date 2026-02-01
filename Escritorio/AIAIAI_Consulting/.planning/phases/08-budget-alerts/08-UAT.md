@@ -1,14 +1,14 @@
 ---
-status: diagnosed
+status: complete
 phase: 08-budget-alerts
-source: [08-01-SUMMARY.md, 08-02-SUMMARY.md]
+source: [08-01-SUMMARY.md, 08-02-SUMMARY.md, 08-03-SUMMARY.md]
 started: 2026-02-01T00:00:00Z
-updated: 2026-02-01T05:00:00Z
+updated: 2026-02-01T06:00:00Z
 ---
 
 ## Current Test
 
-[testing complete]
+[testing complete - gap closure verified]
 
 ## Tests
 
@@ -22,13 +22,11 @@ result: pass
 
 ### 3. Alert Banner Dismissal
 expected: When an alert is active, dashboard shows dismissible banner. Clicking dismiss hides it and persists in localStorage for the session
-result: skipped
-reason: Cannot trigger alerts due to settings save failure (blocking issue in Test 10)
+result: pass
 
 ### 4. Alert Threshold Evaluation
 expected: When token spend crosses configured thresholds (70% warning, 90% critical), alerts are generated and displayed as banners
-result: skipped
-reason: Cannot modify thresholds due to settings save failure (blocking issue in Test 10)
+result: pass
 
 ### 5. Per-Project Budget Alerts
 expected: Individual projects can have their own budget limits. When a project crosses its limit, a project-specific alert appears
@@ -56,32 +54,23 @@ reason: Cannot test without ability to trigger/reset alerts (blocked by Test 10 
 
 ### 10. Settings Persistence
 expected: Changing alert thresholds or budget values in /settings saves to data/config/alerts.json and takes effect immediately
-result: issue
-reported: "POST /api/settings/alerts returns 500 error. Browser shows 'Failed to save alert config' toast. Cannot save any settings changes. The route exists, file path is correct, but atomicWriteJson or validation is failing."
-severity: blocker
+result: pass
+note: Fixed via plan 08-03 - POST now returns 200 and persists correctly
 
 ## Summary
 
 total: 10
-passed: 3
-issues: 1
+passed: 6
+issues: 0
 pending: 0
-skipped: 6
+skipped: 4
 
 ## Gaps
 
+### Resolved
+
 - truth: "Changing alert thresholds or budget values in /settings saves to data/config/alerts.json and takes effect immediately"
-  status: failed
-  reason: "User reported: POST /api/settings/alerts returns 500 error. Browser shows 'Failed to save alert config' toast. Cannot save any settings changes. The route exists, file path is correct, but atomicWriteJson or validation is failing."
-  severity: blocker
+  status: resolved
+  resolution: "Fixed via plan 08-03 - Added '..' to path.join() calls in alert-config.ts and alert-evaluator.ts"
+  verified: 2026-02-01
   test: 10
-  root_cause: "Path resolution bug - alert-config.ts and alert-evaluator.ts missing '..' in process.cwd() paths. Next.js cwd is /app but data is at project root /data. Paths resolve to /app/data/... (doesn't exist) instead of /data/..."
-  artifacts:
-    - path: "app/src/lib/alert-config.ts"
-      issue: "CONFIG_PATH missing '..' (line 7)"
-    - path: "app/src/lib/alert-evaluator.ts"
-      issue: "ANALYTICS_PATH, TOKENS_PATH, STATE_PATH all missing '..' (lines 7-9)"
-  missing:
-    - "Add '..' to path.join() calls to navigate from /app to project root"
-    - "Align with pattern used in data.ts, sync-manager.ts, data-helpers.ts"
-  debug_session: ".planning/debug/settings-persistence-500-error.md"
