@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import type { Project } from "@/lib/data";
+import { ProjectHealthBadge } from "@/components/workflow/ProjectHealthBadge";
+import type { Project, QualityEntry } from "@/lib/data";
 
 const statusColors: Record<string, string> = {
   active: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
@@ -14,11 +15,18 @@ const statusLabels: Record<string, string> = {
   completed: "Completado",
 };
 
-export function ProjectDetailHeader({ project }: { project: Project }) {
+export function ProjectDetailHeader({
+  project,
+  quality
+}: {
+  project: Project;
+  quality?: QualityEntry;
+}) {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3">
         <h1 className="text-3xl font-bold tracking-tight">{project.name}</h1>
+        <ProjectHealthBadge project={project} quality={quality} />
         <Badge className={statusColors[project.status] ?? ""} variant="secondary">
           {statusLabels[project.status] ?? project.status}
         </Badge>

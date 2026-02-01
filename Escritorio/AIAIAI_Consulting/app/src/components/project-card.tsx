@@ -2,6 +2,10 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { ProjectHealthBadge } from "@/components/workflow/ProjectHealthBadge";
+import { generateNextActions } from "@/lib/workflow-engine";
+import { getLatestQuality } from "@/lib/data-filters";
+import { getQuality } from "@/lib/data";
 import type { Project } from "@/lib/data";
 
 const statusColors: Record<string, string> = {
@@ -16,16 +20,27 @@ const statusLabels: Record<string, string> = {
   completed: "Completado",
 };
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, highlight }: { project: Project; highlight?: boolean }) {
+  // Get quality data for this project
+  const allQuality = getQuality();
+  const quality = getLatestQuality(allQuality, project.id);
+
+  // Get first next action
+  const actions = generateNextActions(project, quality);
+  const nextAction = actions[0];
+
   return (
     <Link href={`/projects/${project.id}`} className="block hover:shadow-lg transition-shadow rounded-lg">
-    <Card>
+    <Card className={highlight ? "ring-2 ring-cyan-500" : ""}>
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <CardTitle className="text-lg">{project.name}</CardTitle>
-          <Badge className={statusColors[project.status] ?? ""} variant="secondary">
-            {statusLabels[project.status] ?? project.status}
-          </Badge>
+          <div className="flex items-center gap-2">
+            <ProjectHealthBadge project={project} quality={quality} />
+            <Badge className={statusColors[project.status] ?? ""} variant="secondary">
+              {statusLabels[project.status] ?? project.status}
+            </Badge>
+          </div>
         </div>
         <CardDescription>{project.description}</CardDescription>
       </CardHeader>
@@ -62,6 +77,17 @@ export function ProjectCard({ project }: { project: Project }) {
             </Badge>
           ))}
         </div>
+
+        {nextAction && (
+          <div className="pt-3 border-t border-border/50">
+            <p className="text-xs text-muted-foreground">
+              ⚡ <span className="font-semibold">Próximo:</span> {nextAction.title}
+              <Badge variant="outline" className="ml-2 text-[10px]">
+                {nextAction.priority}
+              </Badge>
+            </p>
+          </div>
+        )}
       </CardContent>
     </Card>
     </Link>

@@ -19,6 +19,10 @@ export const ProjectSchema = z.object({
   tasksTotal: z.number().int().min(0),
   tasksDone: z.number().int().min(0),
   description: z.string(),
+  // Workflow fields (optional for MVP)
+  healthScore: z.number().min(0).max(100).optional(),
+  lastActivity: z.string().optional(), // ISO date
+  velocity: z.number().optional(), // Tasks per week
 });
 
 // Token entry schema
@@ -132,6 +136,17 @@ export const AlertResultSchema = z.object({
   projectName: z.string().optional(),
 });
 
+// Next action schema (workflow guidance)
+export const NextActionSchema = z.object({
+  id: z.string(),
+  priority: z.enum(["critical", "high", "medium", "low"]),
+  category: z.enum(["development", "testing", "quality", "deployment"]),
+  title: z.string(),
+  description: z.string(),
+  estimatedDays: z.number().optional(),
+  agentSuggestion: z.string().optional(), // Command Center agent name
+});
+
 // Export inferred TypeScript types
 export type Project = z.infer<typeof ProjectSchema>;
 export type TokenEntry = z.infer<typeof TokenEntrySchema>;
@@ -147,6 +162,7 @@ export type AlertThreshold = z.infer<typeof AlertThresholdSchema>;
 export type AlertConfig = z.infer<typeof AlertConfigSchema>;
 export type AlertState = z.infer<typeof AlertStateSchema>;
 export type AlertResult = z.infer<typeof AlertResultSchema>;
+export type NextAction = z.infer<typeof NextActionSchema>;
 
 /**
  * Validates data against a Zod schema.

@@ -5,6 +5,8 @@ import { Sidebar } from "@/components/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { DashboardHeader } from "@/components/dashboard-header";
 import { AlertBanner } from "@/components/alert-banner";
+import { ProjectProvider } from "@/contexts/project-context";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +33,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex h-screen">
-          <Sidebar />
-          <main className="flex-1 overflow-y-auto p-8">
-            <AlertBanner />
-            <DashboardHeader />
-            {children}
-          </main>
-        </div>
-        <Toaster />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ProjectProvider>
+            <div className="flex h-screen">
+              <Sidebar />
+              <main className="flex-1 overflow-y-auto p-8">
+                <AlertBanner />
+                <DashboardHeader />
+                {children}
+              </main>
+            </div>
+            <Toaster />
+          </ProjectProvider>
+        </Suspense>
       </body>
     </html>
   );

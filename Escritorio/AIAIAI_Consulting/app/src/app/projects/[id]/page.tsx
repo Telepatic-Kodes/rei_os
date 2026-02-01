@@ -6,6 +6,9 @@ import { getProjectById, getQualityByProject } from "@/lib/data";
 import { ProjectDetailHeader } from "@/components/project-detail-header";
 import { ProjectTimeline } from "@/components/project-timeline";
 import { ProjectMetrics } from "@/components/project-metrics";
+import { NextActionsCard } from "@/components/workflow/NextActionsCard";
+import { ProgressNarrative } from "@/components/workflow/ProgressNarrative";
+import { generateNextActions } from "@/lib/workflow-engine";
 
 export default async function ProjectDetailPage({
   params,
@@ -24,6 +27,9 @@ export default async function ProjectDetailPage({
     ? qualityEntries[qualityEntries.length - 1]
     : undefined;
 
+  // Generate workflow recommendations
+  const nextActions = generateNextActions(project, latestQuality);
+
   return (
     <div className="space-y-6">
       <Link
@@ -34,7 +40,7 @@ export default async function ProjectDetailPage({
         Volver a proyectos
       </Link>
 
-      <ProjectDetailHeader project={project} />
+      <ProjectDetailHeader project={project} quality={latestQuality} />
 
       <Tabs defaultValue="resumen" className="w-full">
         <TabsList>
@@ -42,7 +48,9 @@ export default async function ProjectDetailPage({
           <TabsTrigger value="timeline">Timeline</TabsTrigger>
           <TabsTrigger value="metricas">Metricas</TabsTrigger>
         </TabsList>
-        <TabsContent value="resumen" className="mt-4">
+        <TabsContent value="resumen" className="mt-4 space-y-6">
+          <ProgressNarrative project={project} quality={latestQuality} />
+          <NextActionsCard actions={nextActions} projectId={project.id} />
           <ProjectMetrics project={project} quality={latestQuality} />
         </TabsContent>
         <TabsContent value="timeline" className="mt-4">
