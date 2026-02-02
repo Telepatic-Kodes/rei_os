@@ -2,7 +2,6 @@
 
 import { useState, ReactNode } from "react";
 import { Sidebar } from "@/components/sidebar";
-import { ErrorBoundary } from "@/components/error-boundary";
 import { Menu } from "lucide-react";
 
 interface ClientLayoutProps {
@@ -30,9 +29,7 @@ export function ClientLayout({ children, header, alertBanner }: ClientLayoutProp
       <main className="flex-1 overflow-y-auto p-8">
         {alertBanner}
         {header}
-        <ErrorBoundary>
-          {children}
-        </ErrorBoundary>
+        {children}
       </main>
     </div>
   );
