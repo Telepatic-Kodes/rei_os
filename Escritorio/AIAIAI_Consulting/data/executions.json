@@ -17,7 +17,10 @@
       },
       "output": {
         "post": "🤖 AI is transforming marketing automation...",
-        "hashtags": ["#AIMarketing", "#MarketingAutomation"]
+        "hashtags": [
+          "#AIMarketing",
+          "#MarketingAutomation"
+        ]
       }
     },
     {
@@ -37,8 +40,58 @@
       },
       "output": {
         "keywords": [
-          { "keyword": "marketing automation software", "volume": 5400, "difficulty": 68 },
-          { "keyword": "email automation tools", "volume": 3200, "difficulty": 54 }
+          {
+            "keyword": "marketing automation software",
+            "volume": 5400,
+            "difficulty": 68
+          },
+          {
+            "keyword": "email automation tools",
+            "volume": 3200,
+            "difficulty": 54
+          }
+        ]
+      }
+    },
+    {
+      "id": "exec-1769874409504-vms5lh7",
+      "agentId": "brand-001",
+      "agentName": "Brand Strategist",
+      "taskType": "brand_guidelines",
+      "status": "completed",
+      "progress": 100,
+      "startedAt": 1769874409504,
+      "input": {},
+      "completedAt": 1769874412545,
+      "duration": 3041,
+      "tokensUsed": 1393,
+      "cost": 0,
+      "output": {
+        "result": "Completed brand_guidelines for Marketing"
+      }
+    },
+    {
+      "id": "exec-1769875175649-7ospsww",
+      "agentId": "social-001",
+      "agentName": "LinkedIn Strategist",
+      "taskType": "create_linkedin_post",
+      "status": "completed",
+      "progress": 100,
+      "startedAt": 1769875175650,
+      "input": {
+        "topic": "AI-Powered Guitar Learning in 2026"
+      },
+      "project": "guitarrap",
+      "completedAt": 1769875178709,
+      "duration": 3059,
+      "tokensUsed": 990,
+      "cost": 0,
+      "output": {
+        "post": "🚀 AI-Powered Guitar Learning in 2026 is transforming the industry!\n\nKey insights:\n• Innovation drives growth\n• Data-informed decisions win\n• Customer-first approach matters\n\n#Marketing #Innovation",
+        "hashtags": [
+          "#Marketing",
+          "#Innovation",
+          "#BusinessGrowth"
         ]
       }
     }

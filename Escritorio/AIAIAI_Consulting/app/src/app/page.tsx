@@ -10,6 +10,8 @@ import {
   calculateProjectStats,
   calculateTokenTotals,
 } from "@/lib/data-filters";
+import { BrutalistPanel } from "@/components/ui/brutalist-panel";
+import { CommandCenterWidget } from "@/components/command-center-widget";
 
 export default async function Home({
   searchParams,
@@ -44,39 +46,76 @@ export default async function Home({
 
   const totalIssues = quality.reduce((sum, q) => sum + q.openIssues, 0);
 
-  return (
-    <div className="space-y-8">
-      <h1 className="text-3xl font-bold">Dashboard</h1>
+  const budgetPercent = (tokenTotals.totalCost / tokenData.budget.monthly) * 100;
+  const coverageStatus = avgCoverage >= 80 ? 'green' : avgCoverage >= 60 ? 'yellow' : 'red';
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  return (
+    <main className="max-w-[2000px] mx-auto space-y-6">
+      {/* Page Title */}
+      <h1 className="text-3xl font-bold text-cyan-400 tracking-wider font-[family-name:var(--font-space)] uppercase">
+        ▐ DASHBOARD ▌
+      </h1>
+
+      {/* Stats Grid - 4 columns */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
-          title="Proyectos totales"
+          title="Projects"
           value={projectStats.total}
-          subtitle={`${projectStats.active} activos`}
+          subtitle={`${projectStats.active} active`}
+          icon="~"
+          color="cyan"
         />
         <StatCard
-          title="Gasto mensual"
+          title="Monthly Budget"
           value={`$${tokenTotals.totalCost.toFixed(2)}`}
-          subtitle={`de $${tokenData.budget.monthly} presupuesto`}
+          subtitle={`of $${tokenData.budget.monthly}`}
+          icon="$"
+          color={budgetPercent > 80 ? 'red' : budgetPercent > 60 ? 'yellow' : 'green'}
+          trend={budgetPercent > 80 ? 'up' : 'neutral'}
+          trendValue={`${budgetPercent.toFixed(0)}%`}
         />
         <StatCard
-          title="Cobertura promedio"
+          title="Test Coverage"
           value={`${avgCoverage}%`}
-          subtitle="frontend + backend"
+          subtitle="avg frontend + backend"
+          icon="%"
+          color={coverageStatus}
+          trend={avgCoverage >= 80 ? 'up' : avgCoverage >= 60 ? 'neutral' : 'down'}
         />
-        <StatCard title="Issues abiertos" value={totalIssues} subtitle="calidad de código" />
+        <StatCard
+          title="Open Issues"
+          value={totalIssues}
+          subtitle="code quality"
+          icon="!"
+          color={totalIssues > 10 ? 'red' : totalIssues > 5 ? 'yellow' : 'green'}
+        />
       </div>
 
-      <TokenChart entries={tokenEntries} budget={tokenData.budget.monthly} />
+      {/* Token Chart and Agent Activity */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <BrutalistPanel title="Token Usage Monitor" borderColor="green">
+            <TokenChart entries={tokenEntries} budget={tokenData.budget.monthly} />
+          </BrutalistPanel>
+        </div>
+        <div className="lg:col-span-1">
+          <CommandCenterWidget />
+        </div>
+      </div>
 
-      <div>
-        <h2 className="text-xl font-semibold mb-4">Proyectos</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      {/* Projects Grid */}
+      <BrutalistPanel title="Active Projects" borderColor="purple">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
-      </div>
-    </div>
+        {projects.length === 0 && (
+          <div className="text-center py-12 text-gray-500 uppercase tracking-wider text-sm">
+            No projects found
+          </div>
+        )}
+      </BrutalistPanel>
+    </main>
   );
 }

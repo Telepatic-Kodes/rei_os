@@ -152,5 +152,467 @@
     "lighthouseScore": 0,
     "openIssues": 4,
     "techDebt": "none"
+  },
+  {
+    "project": "amd",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 2,
+    "techDebt": "none"
+  },
+  {
+    "project": "claude-workspace",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "dev",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "guitarrap",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "inmobiliariapp",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 1,
+    "techDebt": "none"
+  },
+  {
+    "project": "money-ads",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 3,
+    "techDebt": "none"
+  },
+  {
+    "project": "my-remotion-video",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "my-video",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "personal-os",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 4,
+    "techDebt": "none"
+  },
+  {
+    "project": "pricing-radar",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 4,
+    "techDebt": "none"
+  },
+  {
+    "project": "rei-os",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "remotion-system",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "sueno-andino",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "topic-intelligence",
+    "date": "2026-01-31",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "amd",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 2,
+    "techDebt": "none"
+  },
+  {
+    "project": "claude-workspace",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "dev",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "guitarrap",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "inmobiliariapp",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 1,
+    "techDebt": "none"
+  },
+  {
+    "project": "money-ads",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 3,
+    "techDebt": "none"
+  },
+  {
+    "project": "my-remotion-video",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "my-video",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "personal-os",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 4,
+    "techDebt": "none"
+  },
+  {
+    "project": "pricing-radar",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 4,
+    "techDebt": "none"
+  },
+  {
+    "project": "rei-os",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "remotion-system",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "sueno-andino",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "topic-intelligence",
+    "date": "2026-02-01",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "amd",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 2,
+    "techDebt": "none"
+  },
+  {
+    "project": "claude-workspace",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "dev",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "guitarrap",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "inmobiliariapp",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 1,
+    "techDebt": "none"
+  },
+  {
+    "project": "money-ads",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 3,
+    "techDebt": "none"
+  },
+  {
+    "project": "my-remotion-video",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "my-video",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "personal-os",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 4,
+    "techDebt": "none"
+  },
+  {
+    "project": "pricing-radar",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 4,
+    "techDebt": "none"
+  },
+  {
+    "project": "rei-os",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "remotion-system",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "sueno-andino",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
+  },
+  {
+    "project": "topic-intelligence",
+    "date": "2026-02-02",
+    "testCoverage": {
+      "frontend": 0,
+      "backend": 0
+    },
+    "lighthouseScore": 0,
+    "openIssues": 0,
+    "techDebt": "none"
   }
 ]
