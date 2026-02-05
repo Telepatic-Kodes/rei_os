@@ -5,6 +5,9 @@ import { z } from "zod";
  * These schemas provide runtime validation and type safety for JSON data.
  */
 
+// ISO date string validator (YYYY-MM-DD)
+const isoDateString = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Expected ISO date format YYYY-MM-DD");
+
 // Project schema
 export const ProjectSchema = z.object({
   id: z.string(),
@@ -12,8 +15,8 @@ export const ProjectSchema = z.object({
   client: z.string(),
   status: z.enum(["active", "paused", "completed"]),
   progress: z.number().min(0).max(100),
-  startDate: z.string(),
-  deadline: z.string(),
+  startDate: isoDateString,
+  deadline: isoDateString,
   stack: z.array(z.string()),
   lastCommit: z.string(),
   tasksTotal: z.number().int().min(0),
@@ -21,13 +24,13 @@ export const ProjectSchema = z.object({
   description: z.string(),
   // Workflow fields (optional for MVP)
   healthScore: z.number().min(0).max(100).optional(),
-  lastActivity: z.string().optional(), // ISO date
+  lastActivity: isoDateString.optional(),
   velocity: z.number().optional(), // Tasks per week
 });
 
 // Token entry schema
 export const TokenEntrySchema = z.object({
-  date: z.string(),
+  date: isoDateString,
   project: z.string(),
   session: z.string(),
   tokensIn: z.number().int().min(0),
@@ -51,7 +54,7 @@ export const TokenDataSchema = z.object({
 // Quality entry schema
 export const QualityEntrySchema = z.object({
   project: z.string(),
-  date: z.string(),
+  date: isoDateString,
   testCoverage: z.object({
     frontend: z.number().min(0).max(100),
     backend: z.number().min(0).max(100),

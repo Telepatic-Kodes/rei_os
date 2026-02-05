@@ -130,6 +130,13 @@ export function CommandPalette() {
     return acc;
   }, {} as Record<string, CommandItem[]>);
 
+  const executeCommand = useCallback((cmd: CommandItem) => {
+    cmd.action();
+    setIsOpen(false);
+    setQuery("");
+    setSelectedIndex(0);
+  }, []);
+
   // Keyboard shortcuts
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     // Open/close with Ctrl+K or Cmd+K
@@ -160,7 +167,7 @@ export function CommandPalette() {
       e.preventDefault();
       executeCommand(filteredCommands[selectedIndex]);
     }
-  }, [isOpen, filteredCommands, selectedIndex]);
+  }, [isOpen, filteredCommands, selectedIndex, executeCommand]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -171,13 +178,6 @@ export function CommandPalette() {
   useEffect(() => {
     setSelectedIndex(0);
   }, [query]);
-
-  const executeCommand = (cmd: CommandItem) => {
-    cmd.action();
-    setIsOpen(false);
-    setQuery("");
-    setSelectedIndex(0);
-  };
 
   if (!isOpen) return null;
 
