@@ -25,23 +25,29 @@ const dataDir = path.join(process.cwd(), "..", "data");
 
 /**
  * Reads and validates JSON data using a Zod schema.
- * @param filename - The filename relative to the data directory
- * @param schema - The Zod schema to validate against
- * @returns The validated and typed data
- * @throws Error if file doesn't exist or validation fails
+ * Returns fallback value on any failure (missing file, invalid JSON, schema mismatch).
  */
-function readValidatedJson<T>(filename: string, schema: z.ZodType<T>): T {
+function readValidatedJson<T>(filename: string, schema: z.ZodType<T>, fallback: T): T {
   const filePath = path.join(dataDir, filename);
-  const raw = fs.readFileSync(filePath, "utf-8");
-  const parsed = JSON.parse(raw);
-  return schema.parse(parsed);
+  try {
+    const raw = fs.readFileSync(filePath, "utf-8");
+    const parsed = JSON.parse(raw);
+    return schema.parse(parsed);
+  } catch (error) {
+    const errorType =
+      error instanceof z.ZodError ? "validation" :
+      (error as NodeJS.ErrnoException).code === "ENOENT" ? "missing file" :
+      "parse";
+    console.error(`[data] Failed to read ${filename} (${errorType}):`, error instanceof Error ? error.message : error);
+    return fallback;
+  }
 }
 
 /**
  * Gets all projects with runtime validation.
  */
 export function getProjects(): Project[] {
-  return readValidatedJson("projects.json", z.array(ProjectSchema));
+  return readValidatedJson("projects.json", z.array(ProjectSchema), []);
 }
 
 /**
@@ -65,7 +71,7 @@ export function writeProjects(projects: Project[]): void {
  * Gets token data with runtime validation.
  */
 export function getTokenData(): TokenData {
-  return readValidatedJson("tokens.json", TokenDataSchema);
+  return readValidatedJson("tokens.json", TokenDataSchema, { budget: { monthly: 0, currency: "USD" }, entries: [] });
 }
 
 /**
@@ -82,7 +88,7 @@ export function writeTokenData(data: TokenData): void {
  * Gets quality metrics with runtime validation.
  */
 export function getQuality(): QualityEntry[] {
-  return readValidatedJson("quality.json", z.array(QualityEntrySchema));
+  return readValidatedJson("quality.json", z.array(QualityEntrySchema), []);
 }
 
 /**
@@ -96,14 +102,22 @@ export function getQualityByProject(project: string): QualityEntry[] {
  * Gets budget configuration with runtime validation.
  */
 export function getBudgetConfig(): BudgetConfig {
-  return readValidatedJson("config/budget.json", BudgetConfigSchema);
+  return readValidatedJson("config/budget.json", BudgetConfigSchema, {
+    monthly: 0,
+    currency: "USD",
+  });
 }
 
 /**
  * Gets analytics data with runtime validation.
  */
+const emptyWindow = { totalCost: 0, tokensIn: 0, tokensOut: 0, byModel: {}, burnRate: 0 };
+
 export function getAnalytics(): Analytics {
-  return readValidatedJson("analytics.json", AnalyticsSchema);
+  return readValidatedJson("analytics.json", AnalyticsSchema, {
+    generatedAt: new Date().toISOString(),
+    windows: { "7d": emptyWindow, "30d": emptyWindow, "90d": emptyWindow },
+  });
 }
 
 /**

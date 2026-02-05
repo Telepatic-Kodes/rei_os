@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 /**
@@ -26,23 +26,23 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [currentProject, setCurrentProjectState] = useState<string>("all");
   const [isLoading, setIsLoading] = useState(true);
+  const initialized = useRef(false);
 
-  // Initialize from URL or localStorage
+  // Initialize from URL or localStorage (runs once on mount)
   useEffect(() => {
+    if (initialized.current) return;
+    initialized.current = true;
+
     const urlProject = searchParams.get("project");
 
     if (urlProject) {
-      // URL has priority
       setCurrentProjectState(urlProject);
-      // Sync to localStorage
       localStorage.setItem("aiaiai.currentProject", urlProject);
     } else {
-      // Fallback to localStorage
       const stored = localStorage.getItem("aiaiai.currentProject");
       const initialProject = stored || "all";
       setCurrentProjectState(initialProject);
 
-      // Update URL to match
       const newParams = new URLSearchParams(searchParams);
       newParams.set("project", initialProject);
       router.replace(`${pathname}?${newParams.toString()}`, { scroll: false });

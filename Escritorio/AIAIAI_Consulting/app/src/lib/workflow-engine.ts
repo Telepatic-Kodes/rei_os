@@ -69,7 +69,9 @@ export function computeHealthScore(project: Project, quality?: QualityEntry): nu
 
   // 5. Task tracking mismatch penalty (-20 pts)
   const tasksRemaining = project.tasksTotal - project.tasksDone;
-  const progressExpected = (project.tasksDone / project.tasksTotal) * 100;
+  const progressExpected = project.tasksTotal > 0
+    ? (project.tasksDone / project.tasksTotal) * 100
+    : 0;
   const progressDelta = Math.abs(project.progress - progressExpected);
 
   if (progressDelta > 20) {

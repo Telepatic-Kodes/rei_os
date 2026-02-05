@@ -84,7 +84,7 @@ export function HandoffQueue({ handoffs, onHandoffUpdated }: HandoffQueueProps) 
                   <span className="text-yellow-400 font-bold uppercase">
                     {handoff.fromAgent}
                   </span>
-                  <span className="text-gray-600">→</span>
+                  <span className="text-gray-400">→</span>
                   <span className="text-yellow-400 font-bold uppercase">
                     {handoff.toAgent}
                   </span>
@@ -92,11 +92,11 @@ export function HandoffQueue({ handoffs, onHandoffUpdated }: HandoffQueueProps) 
 
                 {/* Reason */}
                 <div className="text-xs text-gray-400">
-                  <span className="text-gray-600">Reason:</span> &quot;{handoff.reason}&quot;
+                  <span className="text-gray-400">Reason:</span> &quot;{handoff.reason}&quot;
                 </div>
 
                 {/* Timestamp */}
-                <div className="text-xs text-gray-600">
+                <div className="text-xs text-gray-400">
                   {new Date(handoff.createdAt).toLocaleString()}
                 </div>
 

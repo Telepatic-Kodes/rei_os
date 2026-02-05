@@ -1,12 +1,14 @@
 import { execSync } from "node:child_process";
-import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, unlinkSync, writeFileSync, openSync, closeSync, constants } from "node:fs";
 import { join, resolve } from "node:path";
 import { atomicWriteJson } from "./atomic-write";
 import { generateAnalytics } from "./analytics";
 import { SyncStatusSchema } from "./schemas";
 import type { SyncStatus } from "./schemas";
 
-const ROOT = resolve(__dirname, "..", "..", "..");
+// Use process.cwd() instead of __dirname for Next.js compatibility
+// process.cwd() points to app/, so go up one level to monorepo root
+const ROOT = resolve(process.cwd(), "..");
 const LOCK_FILE = join(ROOT, "data", ".sync-lock");
 const STATUS_FILE = join(ROOT, "data", "sync-status.json");
 const STALE_THRESHOLD_MS = 60 * 60 * 1000; // 1 hour
@@ -20,27 +22,40 @@ export async function runAllSyncs(): Promise<{
   durationMs?: number;
   error?: string;
 }> {
-  // Check for existing lock file
-  if (existsSync(LOCK_FILE)) {
-    const lockContent = readFileSync(LOCK_FILE, "utf-8");
-    const lockTime = new Date(lockContent).getTime();
-    const now = Date.now();
+  // Acquire lock atomically using O_CREAT|O_EXCL (fails if file already exists)
+  try {
+    const fd = openSync(LOCK_FILE, constants.O_CREAT | constants.O_EXCL | constants.O_WRONLY);
+    writeFileSync(fd, new Date().toISOString(), "utf-8");
+    closeSync(fd);
+  } catch (lockError) {
+    if ((lockError as NodeJS.ErrnoException).code === "EEXIST") {
+      // Lock file exists - check if stale
+      try {
+        const lockContent = readFileSync(LOCK_FILE, "utf-8");
+        const lockTime = new Date(lockContent).getTime();
+        const now = Date.now();
 
-    if (now - lockTime < STALE_THRESHOLD_MS) {
-      // Lock is fresh - skip this run
-      console.log("Sync already in progress (lock file exists) - skipping");
-      return { status: "skipped" };
+        if (now - lockTime < STALE_THRESHOLD_MS) {
+          console.log("Sync already in progress (lock file exists) - skipping");
+          return { status: "skipped" };
+        }
+
+        // Lock is stale - remove and retry acquisition
+        console.warn(
+          `Stale lock file detected (${Math.round((now - lockTime) / 1000 / 60)}min old) - removing`
+        );
+        unlinkSync(LOCK_FILE);
+        const fd = openSync(LOCK_FILE, constants.O_CREAT | constants.O_EXCL | constants.O_WRONLY);
+        writeFileSync(fd, new Date().toISOString(), "utf-8");
+        closeSync(fd);
+      } catch {
+        console.log("Sync lock contention - another process acquired it first");
+        return { status: "skipped" };
+      }
     } else {
-      // Lock is stale (>1 hour old) - remove it
-      console.warn(
-        `Stale lock file detected (${Math.round((now - lockTime) / 1000 / 60)}min old) - removing`
-      );
-      unlinkSync(LOCK_FILE);
+      throw lockError;
     }
   }
-
-  // Write lock file
-  writeFileSync(LOCK_FILE, new Date().toISOString(), "utf-8");
   const startTime = Date.now();
 
   try {

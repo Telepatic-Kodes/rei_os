@@ -103,7 +103,7 @@ export function WorkflowLauncher({ workflows, onWorkflowLaunched }: WorkflowLaun
               <div key={idx} className="flex items-center gap-2">
                 <span className="text-green-400">→</span>
                 <span>{step.agentId}</span>
-                <span className="text-gray-600">|</span>
+                <span className="text-gray-400">|</span>
                 <span>{step.taskType.replace(/_/g, ' ')}</span>
               </div>
             ))}
